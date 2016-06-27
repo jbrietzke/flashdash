@@ -1,5 +1,6 @@
 var Express = require('express');
 var router = Express.Router();
+var models = require('../models/');
 
 router.get('/', function(req, res, next){
   res.render('home');
