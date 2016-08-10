@@ -1,14 +1,23 @@
 
-app.controller('ticktest', function($http, $scope, $log) {
+app.controller('ticktest', function($http, $scope, tickFactory) {
 
-    let ticker = setInterval(tick, 1000);
-    $scope.counter = 0;
+    $scope.Data = {counter: 0};
 
-    function tick() {
-        $http.get('/api/test/loghits')
-        .then(rslt => $scope.counter = rslt.data)
-        .catch(err => {clearInterval(ticker); $scope.counter = "STOPPED"});
+    tickFactory.startTicking($scope.Data);
+
+});
+
+app.factory('tickFactory', function($interval, $http) {
+    let factory = {};
+
+    factory.startTicking = function(Data) {
+        function tick() {
+            $http.get('/api/test/loghits')
+            .then(rslt => { console.log("I ticked!"); Data.counter = rslt.data})
+            .catch(err => {clearInterval(ticker); Data.counter = "STOPPED"});
+        }
+        let ticker = $interval(tick, 1000);
     }
 
-
+    return factory;
 });
