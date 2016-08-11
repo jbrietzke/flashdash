@@ -1,0 +1,9 @@
+'use strict';
+var Sequelize = require('sequelize');
+
+var db = require('../_db');
+
+module.exports = db.define('datasource', {
+	name: Sequelize.STRING, 
+	sourceUrl: Sequelize.STRING
+});
