@@ -1,29 +1,20 @@
 <nav class="navbar navbar-static-top ">
     <div class="container dashnav">
-        <div class="navbar-header">
-        <h3>Layout Controls: </h3>
+        <div>
+        <select ng-options="dashboard as dashboard.name for dashboard in dashboards " ng-model="item" ng-change="update()" class="db-drop-menu big-right-space"></select>
         </div>
+        
+        <label>
+            <h3>Layout Controls: </h3>
+        </label>
 
-                <button
-                ng-class='{ editlocked: !editable, editunlocked: editable}'
-                class='btn editlocked button-space big-right-space'
-                ng-click='toggleEdit()'>
-                {{textEdit}}  </button>
-
-                <!-- <label for="db">Enable Editing </label> -->
-                <!-- <h1>Editing Allowed : {{editable}}    </h1> -->
-
-                <button  ng-disabled='!editable' class='btn btn-primary button-space'>Add Graph</button>
-                <button  ng-disabled='!editable' class='btn btn-success button-space'>Save Layout</button>
-
-
-
-
-        <!-- <button  ui-sref="login" class="btn login-button">Login</button>
-        <div class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div> -->
+        <button
+        ng-class='{ editlocked: !editable, editunlocked: editable}'
+        class='btn editlocked button-space sml-right-space'
+        ng-click='toggleEdit()'>
+        {{textEdit}}  </button>
+        <button  ng-disabled='!editable' class='btn btn-primary button-space'>Add Graph</button>
+        <button  ng-disabled='!editable' class='btn btn-success button-space'>Save Layout</button>
     </div>
 </nav>
 
