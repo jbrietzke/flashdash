@@ -186,7 +186,7 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
       $scope.openSettings = function(widget) {
         $modal.open({
           scope: $scope,
-          templateUrl: 'pages/gridster/widgetSettings.html',
+          templateUrl: '/js/home/graphSettings.html',
           controller: 'WidgetSettingsCtrl',
           resolve: {
             widget: function() {
