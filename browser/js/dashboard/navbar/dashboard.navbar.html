@@ -1,0 +1,31 @@
+<nav class="navbar navbar-static-top ">
+    <div class="container dashnav">
+        <div class="navbar-header">
+        <h3>Layout Controls: </h3>
+        </div>
+
+                <button
+                ng-class='{ editlocked: !editable, editunlocked: editable}'
+                class='btn editlocked button-space big-right-space'
+                ng-click='toggleEdit()'>
+                {{textEdit}}  </button>
+
+                <!-- <label for="db">Enable Editing </label> -->
+                <!-- <h1>Editing Allowed : {{editable}}    </h1> -->
+
+                <button  ng-disabled='!editable' class='btn btn-primary button-space'>Add Graph</button>
+                <button  ng-disabled='!editable' class='btn btn-success button-space'>Save Layout</button>
+
+
+
+
+        <!-- <button  ui-sref="login" class="btn login-button">Login</button>
+        <div class="welcome">
+            <span>Welcome, {{ user.email }}!</span>
+            <a ng-click="logout()">Logout</a>
+        </div> -->
+    </div>
+</nav>
+
+
+
