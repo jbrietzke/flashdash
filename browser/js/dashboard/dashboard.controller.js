@@ -14,7 +14,7 @@ app.controller('dashboardCtrl', function($rootScope, $http, $scope) {
 
 
     $scope.$on('edit-enabled', enableEdit);
-    $scope.$on('edit-disable', disableEdit);
+    $scope.$on('edit-disabled', disableEdit);
 
 
 });
