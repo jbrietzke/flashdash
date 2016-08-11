@@ -2,7 +2,7 @@
     function($scope, $timeout, $rootScope, $modalInstance, widget, generator) {
       $scope.widget = widget;
       $scope.widgetTypes = Object.keys(generator);
-      console.log($scope.widgetTypes)
+      console.log($scope.widget)
 
       $scope.form = {
         name: widget.name,

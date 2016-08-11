@@ -1,16 +1,16 @@
 <section id="home">
     <button ng-click=addWidget()>Add Widget</button>
     <button ng-click=clear()>Clear All Widgets</button>
-    <div gridster="gridsterOptions">
+    <div gridster="gridsterOptions" class='ng-scope gridster-desktop gridster-loaded'>
     <ul class="with-3d-shadow with-transitions">
       <li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
         <div class="box ng-scope" ng-controller='CustomWidgetCtrl'>
             <div class="box-header">
                 <h3>{{ widget.name }}</h3>
-            </div>
-            <div class="box-header-btns pull-right">
-               <button class="glyphicon glyphicon-cog" ng-click='openSettings(widget)'></button>
-               <button class="glyphicon glyphicon-trash" ng-click="remove(widget)"></button>
+                <div class="box-header-btns pull-right">
+                   <a ng-click='openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
+                   <a ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
             </div>
             <div class="box-content">
               <nvd3 options="widget.chart.options"

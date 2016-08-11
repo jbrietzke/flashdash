@@ -1,9 +1,7 @@
 app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory', 
     function($scope, $timeout, sampleWidgetFactory) {
-      console.log(sampleWidgetFactory)
       $scope.gridsterOptions = {
         margins: [20, 20],
-
         columns: 16,
         // mobileBreakPoint: 1000,
         // mobileModeEnabled: true,
