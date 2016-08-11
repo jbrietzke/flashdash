@@ -2,9 +2,10 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
     function($scope, $timeout, generator) {
       $scope.gridsterOptions = {
         margins: [20, 20],
-        columns: 4,
-        //mobileBreakPoint: 1000,
-        mobileModeEnabled: false,
+
+        columns: 16,
+        // mobileBreakPoint: 1000,
+        // mobileModeEnabled: true,
         draggable: {
           handle: 'h3'
         },
@@ -28,13 +29,13 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
           }
         }
       };
-      console.log(generator)
+      //console.log(generator)
       $scope.dashboard = {
         widgets: [{
           col: 0,
           row: 0,
-          sizeY: 1,
-          sizeX: 2,
+          sizeY: 4,
+          sizeX: 8,
           name: "Line Chart Widget",
           type: 'lineChart',
           chart: {
@@ -43,10 +44,10 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
             api: {}
           }
         }, {
-          col: 2,
-          row: 0,
-          sizeY: 1,
-          sizeX: 1,
+          col: 0,
+          row: 4,
+          sizeY: 4,
+          sizeX: 4,
           name: "Pie Chart Widget",
           type: 'pieChart',
           chart: {
@@ -55,10 +56,10 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
             api: {}
           }
         }, {
-          col: 3,
+          col: 12,
           row: 0,
-          sizeY: 1,
-          sizeX: 1,
+          sizeY: 4,
+          sizeX: 4,
           name: "Box Plot Widget",
           type: 'boxPlotChart',
           chart: {
@@ -69,8 +70,8 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
         }, {
           col: 0,
           row: 1,
-          sizeY: 1,
-          sizeX: 2,
+          sizeY: 4,
+          sizeX: 8,
           name: "Discrete Bar Chart Widget",
           type: 'discreteBarChart',
           chart: {
@@ -79,10 +80,10 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
             api: {}
           }
         }, {
-          col: 2,
+          col: 8,
           row: 1,
-          sizeY: 1,
-          sizeX: 2,
+          sizeY: 4,
+          sizeX: 8,
           name: "Stacked Area Chart Widget",
           type: 'stackedAreaChart',
           chart: {
@@ -122,8 +123,8 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
       $scope.addWidget = function() {
         $scope.dashboard.widgets.push({
           name: "New Widget",
-          sizeX: 1,
-          sizeY: 1
+          sizeX: 4,
+          sizeY: 4
         });
       };
 
@@ -180,6 +181,7 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'generator',
     function($scope, $modal) {
 
       $scope.remove = function(widget) {
+        console.log('clicked')
         $scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
       };
 
