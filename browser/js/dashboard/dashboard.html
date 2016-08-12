@@ -1,20 +1,19 @@
 <section id="dashboard" class="fd-panel">
 <div class="row">
 <div class="col-md-4">
-    <h3>Customer's board name here</h3>
+    <h3>{{ dashName }}</h3>
 </div>
     <div class="col-md-8">
-        <h4>Customer's description of the board here, which can be wordy and long and may end up occupying more space than the Occupy Wall Street movement did.</h4>
+        <h4>{{ dashDesc }}</h4>
     </div>
 </div>
     <div id="dashboard-navbar-div">
-
         <dashboardnav></dashboardnav>
-
     </div>
 
-<h1>Editing Allowed : {{editable}}    </h1>
+<h2>Editing Allowed : {{editable}}  (this is to check shared scope)  </h2>
     <div gridster="gridster">
+    <br>
     <p>This is some dashboard content.  It's inside a Gridster div</p>
     <br>
 
