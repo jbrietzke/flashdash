@@ -7,13 +7,6 @@ app.factory('dashboardFactory', function($http, $q){
         }
         return $http.get(link)
         .then(res => res.data)
-        .then(function (data) {
-            return [{
-            values:data,
-            key: 'this works',
-            color: '#ff7f0e'
-            }]
-        })
     }
 
     return obj;

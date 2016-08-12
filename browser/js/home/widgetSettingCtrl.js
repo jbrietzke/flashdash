@@ -13,19 +13,21 @@
         type: widget.type,
         dataSource: widget.dataSource,
         yAxis: widget.yAxis,
-        yAxis: widget.xAxis
+        xAxis: widget.xAxis
       };
 
+      let dataInNVD3Format;
      $scope.setKeys = function(){
       dashboardFactory.getDataSource($scope.form.dataSource)
       .then(function(data){
-         $scope.data = data;
-         widget.chart.data = [{
-            values:data,
-            key: 'this works',
-            color: '#ff7f0e'
-          }]
-      });
+        $scope.dataKeys = Object.keys(data[0]);
+        dataInNVD3Format = [{
+        values:data,
+        key: "this works",
+        color: '#ff7f0e'
+        }]
+      })
+
      }
 
 
@@ -58,7 +60,7 @@
         //update with new options and data
         if (widget.type) {
           widget.chart.options = generator[widget.type].options(widget.xAxis, widget.yAxis);
-          // widget.chart.data = generator[widget.type].data();
+          widget.chart.data = dataInNVD3Format;
         }
         $modalInstance.close(widget);
 

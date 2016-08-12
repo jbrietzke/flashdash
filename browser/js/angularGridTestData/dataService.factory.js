@@ -32,7 +32,6 @@ app.factory('generator', function() {
    *  Data & Options Generators
    */
   function lineChartOptions(xparam, yparam) {
-    console.log('called', xparam, yparam)
     return {
             chart: {
                 type: 'lineChart',
@@ -42,10 +41,8 @@ app.factory('generator', function() {
                     bottom: 40,
                     left: 55
                 },
-                x: function(d){
-                  console.log(d)
-                  return d.name; },
-                y: function(d){ return d.size; },
+                x: function(d,i){ return i; },
+                y: function(d){ return d[yparam]; },
                 useInteractiveGuideline: true,
                 xAxis: {
                     axisLabel: xparam,
@@ -53,9 +50,9 @@ app.factory('generator', function() {
                 },
                 yAxis: {
                     axisLabel: yparam,
-                    // tickFormat: function(d){
-                    //     return d3.format('.02f')(d);
-                    // },
+                    tickFormat: function(d){
+                        return d3.format('.02f')(d);
+                    },
                     axisLabelDistance: -10
                 },
                 showLegend: false
