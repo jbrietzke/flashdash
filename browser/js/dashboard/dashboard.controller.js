@@ -1,20 +1,16 @@
 
-app.controller('dashboardCtrl', function($rootScope, $http, $scope) {
+app.controller('dashboardCtrl', function($scope, ConstFactory) {
 
     $scope.Data = {counter: 0};
 
+    // These will be managed by the child scope in the controller bar
     $scope.editable = false;
+    $scope.dashName = "You have no dashboards";
+    $scope.dashDesc = "Please create a dashboard";
 
-    var enableEdit = function(){
-        $scope.editable = true;
-    }
-    var disableEdit = function(){
-        $scope.editable = false
-    }
-
-
-    $scope.$on('edit-enabled', enableEdit);
-    $scope.$on('edit-disabled', disableEdit);
-
+    // TODO: Put the charts for the selected dashboard on the scope here
+    $scope.$on(ConstFactory.EVENT_DB_SELECTED, function(event, chosen) {
+        console.log("The data must be udpated!  Dashboard is", chosen)
+    })
 
 });

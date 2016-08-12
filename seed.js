@@ -20,9 +20,12 @@ name in the environment files.
 var chalk = require('chalk');
 var db = require('./server/db');
 var User = db.model('user');
+var Dashboard = db.model('dashboard');
 var Promise = require('sequelize').Promise;
+let fs = require('fs');
+var path = require('path');
 
-var seedUsers = function () {
+var seed = function () {
 
     var users = [
         {
@@ -39,13 +42,24 @@ var seedUsers = function () {
         return User.create(userObj);
     });
 
-    return Promise.all(creatingUsers);
-
+    return Promise.all(creatingUsers)
+    .then (function() {
+        let agg = [];
+        function seedFile(fileName, model, list) {
+            let buffer = fs.readFileSync(path.join(__dirname, fileName), 'utf-8');
+            let items = JSON.parse(buffer);
+            let foo = items.map(function (itemObj) {
+                list.push(model.create(itemObj));
+            });
+        }
+        seedFile("seedFiles/dashboardSeed.json", Dashboard, agg);
+        return Promise.all(agg)
+    })
 };
 
 db.sync({ force: true })
     .then(function () {
-        return seedUsers();
+        return seed();
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));
