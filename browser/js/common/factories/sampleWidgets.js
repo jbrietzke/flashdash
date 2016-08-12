@@ -1,14 +1,15 @@
-app.factory('sampleWidgetFactory', ['generator', function (generator) {
+app.factory('sampleWidgetFactory', ['generator', 'dashboardFactory', function (generator, dashboardFactory) {
 	return [{
 	      col: 0,
 	      row: 0,
 	      sizeY: 4,
 	      sizeX: 8,
+	      dataSource: 'http://api.github.com/users/mosane/repos',
 	      name: "Line Chart Widget",
 	      type: 'lineChart',
 	      chart: {
 	        options: generator.lineChart.options(),
-	        data: generator.lineChart.data(),
+	        data: dashboardFactory.getDataSource(this.dataSource),
 	        api: {}
 	      }
 	    }, {

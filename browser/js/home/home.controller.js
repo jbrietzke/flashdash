@@ -1,4 +1,4 @@
-app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory', 
+app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory',
     function($scope, $timeout, sampleWidgetFactory) {
       $scope.gridsterOptions = {
         margins: [20, 20],
@@ -42,7 +42,7 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory',
         }
       };
 
-      $scope.config = { visible: false };
+      $scope.config = { visible: false, autorefresh: true };
 
       //make chart visible after grid have been created
       $timeout(function(){

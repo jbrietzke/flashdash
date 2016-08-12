@@ -1,8 +1,8 @@
-  app.controller('WidgetSettingsCtrl', ['$scope', '$timeout', '$rootScope', '$modalInstance', 'widget', 'generator',
-    function($scope, $timeout, $rootScope, $modalInstance, widget, generator) {
+  app.controller('WidgetSettingsCtrl', ['$scope', 'dashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'generator',
+    function($scope, dashboardFactory, $timeout, $rootScope, $modalInstance, widget, generator) {
       $scope.widget = widget;
+
       $scope.widgetTypes = Object.keys(generator);
-      console.log($scope.widget)
 
       $scope.form = {
         name: widget.name,
@@ -10,8 +10,24 @@
         sizeY: widget.sizeY,
         col: widget.col,
         row: widget.row,
-        type: widget.type
+        type: widget.type,
+        dataSource: widget.dataSource,
+        yAxis: widget.yAxis,
+        yAxis: widget.xAxis
       };
+
+     $scope.setKeys = function(){
+      dashboardFactory.getDataSource($scope.form.dataSource)
+      .then(function(data){
+         $scope.data = data;
+         widget.chart.data = [{
+            values:data,
+            key: 'this works',
+            color: '#ff7f0e'
+          }]
+      });
+     }
+
 
       $scope.sizeOptions = [{
         id: '1',
@@ -41,8 +57,8 @@
 
         //update with new options and data
         if (widget.type) {
-          widget.chart.options = generator[widget.type].options();
-          widget.chart.data = generator[widget.type].data();
+          widget.chart.options = generator[widget.type].options(widget.xAxis, widget.yAxis);
+          // widget.chart.data = generator[widget.type].data();
         }
         $modalInstance.close(widget);
 

@@ -31,7 +31,8 @@ app.factory('generator', function() {
   /**
    *  Data & Options Generators
    */
-  function lineChartOptions() {
+  function lineChartOptions(xparam, yparam) {
+    console.log('called', xparam, yparam)
     return {
             chart: {
                 type: 'lineChart',
@@ -41,18 +42,20 @@ app.factory('generator', function() {
                     bottom: 40,
                     left: 55
                 },
-                x: function(d){ return d.x; },
-                y: function(d){ return d.y; },
+                x: function(d){
+                  console.log(d)
+                  return d.name; },
+                y: function(d){ return d.size; },
                 useInteractiveGuideline: true,
                 xAxis: {
-                    axisLabel: 'Time (ms)',
+                    axisLabel: xparam,
                     axisLabelDistance: -5
                 },
                 yAxis: {
-                    axisLabel: 'Voltage (v)',
-                    tickFormat: function(d){
-                        return d3.format('.02f')(d);
-                    },
+                    axisLabel: yparam,
+                    // tickFormat: function(d){
+                    //     return d3.format('.02f')(d);
+                    // },
                     axisLabelDistance: -10
                 },
                 showLegend: false
