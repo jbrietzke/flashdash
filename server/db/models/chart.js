@@ -5,7 +5,7 @@ var db = require('../_db');
 
 module.exports = db.define('chart', {
 	label: Sequelize.STRING,
-	dataSourceUrl: {
+	dataSource: {
 		type: Sequelize.STRING,
 		validate: {
 			isUrl: true
@@ -17,19 +17,19 @@ module.exports = db.define('chart', {
 			min: 1 // in production peg this to ??
 		}
 	},
-	chartType: {
+	type: {
 		type: Sequelize.STRING //change to enum when appropriate
 	},
-	xsize: {
+	sizeX: {
 		type: Sequelize.INTEGER
 	},
-	ysize: {
+	sizeY: {
 		type: Sequelize.INTEGER
 	},
-	xloc: {
+	col: {
 		type: Sequelize.INTEGER
 	},
-	yloc: {
+	row: {
 		type: Sequelize.INTEGER
 	},
 	color: {

@@ -1,5 +1,5 @@
-app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidgetFactory',
-    function($scope, dashboardFactory, $timeout, sampleWidgetFactory) {
+app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidgetFactory', 'dashboard',
+    function($scope, dashboardFactory, $timeout, sampleWidgetFactory, dashboard) {
       $scope.gridsterOptions = {
         margins: [20, 20],
         columns: 16,
@@ -28,9 +28,9 @@ app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidg
           }
         }
       };
-      //console.log(generator)
       $scope.dashboard = {
-        widgets: sampleWidgetFactory
+        widgets: dashboard.charts
+        // widgets: sampleWidgetFactory
       };
 
       // widget events
@@ -68,10 +68,8 @@ app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidg
       };
 
       $scope.saveLayout = function () {
-        console.log('got called')
         dashboardFactory.saveLayout(1, $scope.dashboard.widgets)
         .then(function (data) {
-          console.log('got saved', data)
         })
       }
     }

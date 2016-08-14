@@ -13,3 +13,4 @@ Dashboard.hasMany(Chart)
 
 Dashboard.belongsTo(User)
 User.hasMany(Dashboard)
+ 

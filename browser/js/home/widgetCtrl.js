@@ -2,7 +2,6 @@ app.controller('CustomWidgetCtrl', ['$scope', '$modal',
 	function($scope, $modal) {
 
 	  $scope.remove = function(widget) {
-	    console.log('clicked')
 	    $scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
 	  };
 
