@@ -5,7 +5,7 @@
     <button ng-click=clear()>Clear All Widgets</button>
     <div gridster="gridsterOptions" class='ng-scope gridster-desktop gridster-loaded'>
     <ul class="with-3d-shadow with-transitions">
-      <li gridster-item="widget" ng-repeat="widget in dashboard.widgets">
+      <li gridster-item="widget" ng-repeat="widget in dashboard.charts">
         <div class="box ng-scope" ng-controller='CustomWidgetCtrl'>
             <div class="box-header">
                 <h3>{{ widget.name }}</h3>

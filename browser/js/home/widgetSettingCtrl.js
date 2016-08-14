@@ -1,6 +1,7 @@
   app.controller('WidgetSettingsCtrl', ['$scope', 'dashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'generator',
     function($scope, dashboardFactory, $timeout, $rootScope, $modalInstance, widget, generator) {
       $scope.widget = widget;
+      console.log(widget)
 
       $scope.widgetTypes = Object.keys(generator);
 
@@ -12,8 +13,8 @@
         row: widget.row,
         type: widget.type,
         dataSource: widget.dataSource,
-        yAxis: widget.yAxis,
-        xAxis: widget.xAxis
+        yparam: widget.yparam,
+        xparam: widget.xparam
       };
 
       let dataInNVD3Format;

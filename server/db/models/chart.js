@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('chart', {
-	label: Sequelize.STRING,
+	name: Sequelize.STRING,
 	dataSource: {
 		type: Sequelize.STRING,
 		validate: {
@@ -32,6 +32,8 @@ module.exports = db.define('chart', {
 	row: {
 		type: Sequelize.INTEGER
 	},
+	xparam: Sequelize.STRING, 
+	yparam: Sequelize.STRING,
 	color: {
 		type: Sequelize.STRING,
 		validate : {
