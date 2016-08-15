@@ -3,7 +3,8 @@
     <h1>Welcome {{user.firstName}} to your account page</h1>
   </div>
   <div class="container">
-    <table>
+  <div class='row'>
+    <table class='col-md-4'>
       <th>Here are your current dashboard</th>
       <tr ng-repeat='dashboard in allDashBoards'>
         <td>{{dashboard.name}}</td>
@@ -14,7 +15,11 @@
         <td><button class="btn btn-primary" ng-click='addDashboard(id, content)'>Create New Dashboard</button></td>
       </tr>
     </table>
-  </div>
+    <div class='col-md-4'>
+    	<h2>Your Account Info <button>Edit</button></h2>
+    </div>
+   </div>
+ </div>
 
 
 
@@ -30,14 +35,3 @@
 <p>We are here in the user page</p>
 <button ng-click='update(id, data)'>Update User Route</button>
 <button ng-click='delete(id)'>Delete User Route</button>
-<button ng-click='addDashboard(id, content)'>Create DashBoard</button>
-
-
-<div>
-  <p ng-repeat='dashboard in allDashBoards'>
-    These are their names {{dashboard.name}}
-    <button ng-click='deleteDashboard(id, dashboard.id)'>Deleting dashboard</button>
-    <button class='btn' ng-click='updateDashboard(id, dashboard.id, content)'>Update</button>
-  </p>
-</div>
-</div> -->
