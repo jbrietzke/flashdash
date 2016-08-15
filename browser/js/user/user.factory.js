@@ -1,4 +1,4 @@
-app.factory('userFactory', function($http){
+app.factory('userFactory', function($http, AuthService){
 	var obj = {};
 
 	obj.updateUser = function(id, data){
@@ -7,8 +7,11 @@ app.factory('userFactory', function($http){
 	}
 
 	obj.deleteUser = function(id){
+    AuthService.logout();
 		return $http.delete('/api/users/' + id)
-		.then(res => res.data)
+		.then(function(res){
+      return res.data;
+    })
 	}
 
 	obj.addDashboard = function(id, content){
@@ -25,6 +28,6 @@ app.factory('userFactory', function($http){
     	return $http.delete('api/users/' + id + '/dashboard/' + dashId)
     	.then(res => res.data);
   	}
-  	
+
 	return obj
 })

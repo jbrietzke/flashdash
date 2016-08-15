@@ -23,7 +23,7 @@ router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next)
    .catch(next);
 });
 
-router.put('/:userId', function(req, res, next){
+router.put('/:userId', ensureAuthenticated, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
     return user.update(req.body);
@@ -35,6 +35,9 @@ router.delete('/:userId', ensureAuthenticated, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
     user.destroy();
+  })
+  .then(function(){
+    req.session.destroy();
   })
   .catch(next);
 })
