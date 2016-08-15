@@ -10,20 +10,26 @@ app.factory('dashboardFactory', function($http, $q, generator){
     }
 
     obj.getDashboard = function (dashboardId) {
+        let dashboard;
         return $http.get('/api/dashboards/' + dashboardId)
         .then(getData)
-        // .then(function (dashboard) {
-        //    let charts = dashboard.charts.map(function (e) {
-        //         e.chart = {
-        //             options: generator[e.type].options(e.xparam, e.yparam),
-        //             data: obj.getDataSource(e.dataSource),
-        //             api: {}
-        //         }
-        //         return e;
-        //     })
-        //     dashboard.charts = charts;
-        //     return dashboard;
-        // })
+        .then(function (_dashboard) {
+            dashboard = _dashboard
+            let promises = []
+            dashboard.charts.forEach(function (e) {
+                obj.getDataSource(e.dataSource)
+                .then(function (sourceData) {
+                    promises.push(sourceData);
+                    e.chart = {
+                        options: generator[e.type].options(e.xparam, e.yparam),
+                        data: sourceData,
+                        api: {}
+                    }
+                })
+            })
+            return Promise.all(promises)
+        })
+        .then(charts => dashboard)
     }
 
     obj.saveLayout = function (dashboardId, layout) {
@@ -38,9 +44,9 @@ app.factory('dashboardFactory', function($http, $q, generator){
     			sizeY: e.sizeY, 
     			col: e.col,
     			row: e.row,
-    			color: e.color || '#0000ff',
-    			dashboardId: dashboardId,
+                color: e.color || '#0000ff',
                 xparam: e.xparam, 
+    			dashboardId: dashboardId,
                 yparam: e.yparam
     		}
     	})
