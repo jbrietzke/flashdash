@@ -1,6 +1,18 @@
-app.controller('userCtrl', function ($scope, userFactory, $state) {
+app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
 
-	$scope.id = 1;
+  AuthService.getLoggedInUser()
+  .then(function(res){
+    $scope.user = res;
+    $scope.id = res.id
+  })
+  .then(function(){
+    return userFactory.getAllDashboards($scope.id)
+  .then(function(data){
+    $scope.allDashBoards = data;
+  })
+  })
+
+
 	$scope.data = {'firstName':'Ray'};
   $scope.content = {'name' : 'practiceDash', 'description': 'A practice for perfection'};
   $scope.dashId = 1;
@@ -22,5 +34,8 @@ app.controller('userCtrl', function ($scope, userFactory, $state) {
 	$scope.deleteDashboard = function(id, dashId){
     	return userFactory.deleteDashboard(id, dashId);
   	}
+
+
+
 
 });

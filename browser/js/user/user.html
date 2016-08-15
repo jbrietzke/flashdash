@@ -5,4 +5,10 @@
 <button ng-click='addDashboard(id, content)'>Create DashBoard</button>
 <button ng-click='deleteDashboard(id, dashId)'>Deleting dashboard</button>
 <button class='btn' ng-click='updateDashboard(id, dashId, content)'>Update</button>
+
+<div>
+  <p ng-repeat='dashboard in allDashBoards'>
+    These are their names {{dashboard.name}}
+  </p>
+</div>
 </div>

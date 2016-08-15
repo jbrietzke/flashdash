@@ -29,5 +29,10 @@ app.factory('userFactory', function($http, AuthService){
     	.then(res => res.data);
   	}
 
+  obj.getAllDashboards = function(id){
+    return $http.get('api/users/' + id + '/dashboards')
+    .then(res => res.data);
+  }
+
 	return obj
 })
