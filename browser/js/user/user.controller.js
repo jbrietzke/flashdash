@@ -44,7 +44,11 @@ $scope.data = {'firstName':'Ray'};
     	})
   	}
 
+  $scope.userEditingMode = false;
 
+  $scope.toggleEditingMode = function(){
+    $scope.userEditingMode = !$scope.userEditingMode;
+  }
 
 
 });
