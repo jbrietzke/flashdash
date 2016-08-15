@@ -16,7 +16,6 @@ app.controller('userCtrl', function ($scope, userFactory) {
   	}
 
 	$scope.updateDashboard = function(id, dashId, content){
-		console.log('hit me')
   		return userFactory.updateDashboard(id, dashId, content)
   	}
 
