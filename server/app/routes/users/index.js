@@ -21,3 +21,20 @@ router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next)
    .catch(next);
 });
 
+router.put('/:userId', ensureAuthenticated, function(req, res, next){
+  User.findById(req.params.userId)
+  .then(function(user){
+    user.update(req.body);
+    res.send(user);
+  })
+  .catch(next);
+})
+
+router.delete('/:userId', ensureAuthenticated, function(req, res, next){
+  User.findById(req.params.userId)
+  .then(function(user){
+    user.destroy();
+    res.redirect('http://google.com')
+  })
+  .catch(next);
+})
