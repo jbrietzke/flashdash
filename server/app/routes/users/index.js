@@ -25,7 +25,6 @@ router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next)
 router.put('/:userId', function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
-    console.log(req.body)
     return user.update(req.body);
   })
   .catch(next);
@@ -34,8 +33,24 @@ router.put('/:userId', function(req, res, next){
 router.delete('/:userId', function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
-    console.log('hit the delete')
     user.destroy();
   })
   .catch(next);
 })
+
+router.post('/:id/dashboard', function(req, res, next){
+  return Dashboard.create({
+
+      userId: req.params.id,
+      name: req.body.name,
+      description: req.body.description
+
+  }).catch(next)
+});
+
+router.delete('/:id/dashboard/:dashboardId', function(req, res, next){
+  Dashboard.findById(req.params.dashboardId)
+  .then(dashboard => dashboard.destory())
+  .catch(next)
+})
+
