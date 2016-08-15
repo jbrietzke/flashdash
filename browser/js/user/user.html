@@ -15,9 +15,20 @@
         <td><button class="btn btn-primary" ng-click='addDashboard(id, content)'>Create New Dashboard</button></td>
       </tr>
     </table>
-    <div class='col-md-4'>
-    	<h2>Your Account Information <button>Edit</button></h2>
-    </div>
+    <table class="col-md-4">
+      <th>Your Account Information</th>
+      <tr>
+        <td>First name: {{user.firstName}}</td>
+      </tr>
+      <tr>
+        <td>Last name: {{user.lastName}}</td>
+      </tr>
+      <tr>
+        <td>Email Address: {{user.email}}</td>
+      </tr>
+    </table>
+
+
    </div>
  </div>
 
