@@ -20,5 +20,10 @@ app.factory('userFactory', function($http){
     .then(res => res.data);
   }
 
+  obj.deleteDashboard = function(id, dashId){
+    return $http.delete('api/users/' + id + '/dashboard/' + dashId)
+    .then(res => res.data);
+  }
+
 	return obj
 })

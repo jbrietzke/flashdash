@@ -3,6 +3,7 @@ app.controller('userCtrl', function ($scope, userFactory) {
 	$scope.id = 1;
 	$scope.data = {'firstName':'Ray'};
   $scope.content = {'name' : 'practiceDash', 'description': 'A practice for perfection'};
+  $scope.dashId = 1;
 
 	$scope.update = function(id, userData){
 		return userFactory.updateUser(id, userData)
@@ -15,6 +16,8 @@ app.controller('userCtrl', function ($scope, userFactory) {
     return userFactory.addDashboard(id, content)
   }
 
-
+  $scope.deleteDashboard = function(id, dashId){
+    return userFactory.deleteDashboard(id, dashId);
+  }
 
 });

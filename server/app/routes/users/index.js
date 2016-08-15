@@ -40,17 +40,15 @@ router.delete('/:userId', function(req, res, next){
 
 router.post('/:id/dashboard', function(req, res, next){
   return Dashboard.create({
-
       userId: req.params.id,
       name: req.body.name,
       description: req.body.description
-
   }).catch(next)
 });
 
 router.delete('/:id/dashboard/:dashboardId', function(req, res, next){
   Dashboard.findById(req.params.dashboardId)
-  .then(dashboard => dashboard.destory())
+  .then(dashboard => dashboard.destroy())
   .catch(next)
 })
 
