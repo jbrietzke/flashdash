@@ -12,6 +12,15 @@ module.exports = db.define('user', {
     password: {
         type: Sequelize.STRING
     },
+    firstName : {
+        type : Sequelize.STRING
+    },
+    lastName : {
+        type : Sequelize.STRING
+    },
+    defaultDashboard : {
+        type : Sequelize.INTEGER
+    },
     salt: {
         type: Sequelize.STRING
     },
