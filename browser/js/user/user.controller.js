@@ -11,12 +11,7 @@ app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
     $scope.allDashBoards = data;
   })
   })
-
-
-$scope.data = {'firstName':'Ray'};
-  $scope.content = {'name' : 'practiceDash', 'description': 'A practice for perfection'};
-
-
+  
 	$scope.update = function(id, userData){
 		return userFactory.updateUser(id, userData);
 	}
@@ -44,7 +39,16 @@ $scope.data = {'firstName':'Ray'};
     	})
   	}
 
+  $scope.userEditingMode = false;
+  $scope.dashboardEditingMode = false;
 
+  $scope.editingDashboard = function(){
+  	$scope.dashboardEditingMode = !$scope.dashboardEditingMode;
+  }
+
+  $scope.toggleEditingMode = function(){
+    $scope.userEditingMode = !$scope.userEditingMode;
+  }
 
 
 });

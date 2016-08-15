@@ -6,18 +6,45 @@
   <div class='row'>
     <table class='col-md-4'>
       <th>Here are your current dashboard</th>
+      <button class="btn btn-success" ng-click='editingDashboard()'>Edit</button>
       <tr ng-repeat='dashboard in allDashBoards'>
-        <td>{{dashboard.name}}</td>
-        <td><button class="btn btn-success" ng-click='updateDashboard(id, data)'>Edit</button></td>
+        <td>
+        	<span ng-hide='dashboardEditingMode'>{{dashboard.name}}</span>
+        	<input ng-hide='!dashboardEditingMode' type="text" ng-model='dashboard.name'
+        	placeholder='{{dashboard.name}}'>
+        	<button ng-hide='!dashboardEditingMode' ng-click='updateDashboard(id, dashboard.id, dashboard)'>Save Changes</button>
+        </td>
         <td><button class="btn btn-danger" ng-click='deleteDashboard(id, dashboard.id)'>Delete</button></td>
       </tr>
       <tr>
         <td><button class="btn btn-primary" ng-click='addDashboard(id, content)'>Create New Dashboard</button></td>
       </tr>
+
     </table>
-    <div class='col-md-4'>
-    	<h2>Your Account Info <button>Edit</button></h2>
-    </div>
+
+
+
+
+
+    <table class="col-md-4">
+      <th>Your Account Information</th>
+      <button ng-click='toggleEditingMode()'>Allow Editing</button>
+      <tr>
+          <td>First name: <input ng-hide='!userEditingMode' ng-model='user.firstName' type="text" placeholder="{{user.firstName}}"><span ng-hide='userEditingMode'>{{user.firstName}}</span></td>
+      </tr>
+      <tr>
+        <td>Last name: <input ng-hide='!userEditingMode' ng-model='user.lastName' type="text" placeholder="{{user.lastName}}"><span ng-hide='userEditingMode'>{{user.lastName}}</span></td>
+      </tr>
+      <tr>
+        <td>Email address: <input ng-hide='!userEditingMode' ng-model='user.email' type="text" placeholder="{{user.email}}"><span ng-hide='userEditingMode'>{{user.email}}</span></td>
+      </tr>
+      <tr>
+        <td><button ng-hide='!userEditingMode' ng-click='update(id, user)'>Update Info</button></td>
+      </tr>
+
+    </table>
+
+
    </div>
  </div>
 
