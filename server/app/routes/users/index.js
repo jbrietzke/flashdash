@@ -16,7 +16,7 @@ var ensureAuthenticated = function (req, res, next) {
 
 //User's Routes
 router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next) {
-   Dashboard.findAll( {where: {userId: req.params.userId}})
+   Dashboard.findAll( {where: {userId: req.params.userId}}) //user.getDashboards()
    .then(function(boards) {
     res.send(boards);
    })
@@ -29,14 +29,14 @@ router.put('/:userId', ensureAuthenticated, function(req, res, next){
   .then(function(user){
     return user.update(req.body);
   })
-  .then(()=> res.send('User Updated'))
+  .then(()=> res.send('User Updated')) // send 200
   .catch(next);
 })
 
 router.delete('/:userId', ensureAuthenticated, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
-    user.destroy();
+    user.destroy(); //should have return
   })
   .then(function(){
     req.session.destroy();
@@ -46,7 +46,7 @@ router.delete('/:userId', ensureAuthenticated, function(req, res, next){
 })
 //User's Dashboard Routes
 router.post('/:id/dashboard', ensureAuthenticated, function(req, res, next){
-  return Dashboard.create({
+  return Dashboard.create({ //return not necessary
       userId: req.params.id,
       name: req.body.name,
       description: req.body.description
