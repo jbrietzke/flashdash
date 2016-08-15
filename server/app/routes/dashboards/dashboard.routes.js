@@ -11,6 +11,7 @@ router.get('/:id', function (req,res,next) {
 	.catch(next)
 });
 
+
 router.put('/:id', function (req,res,next) {
 	let dashboard;
 	Dashboard.findById(req.params.id,{
@@ -34,7 +35,7 @@ router.put('/:id', function (req,res,next) {
 		let creatingCharts = req.body.map(function (e) {
 			return dashboard.createChart(e)
 		})
-		
+
 		return Promise.all(creatingCharts)
 	})
 	.then(function (charts) {
