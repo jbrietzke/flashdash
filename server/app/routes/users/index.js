@@ -2,7 +2,7 @@
 var router = require('express').Router();
 const db = require('../../../db');
 const Dashboard = db.model('dashboard');
-const User = db.model('dashboard');
+const User = db.model('user');
 module.exports = router;
 var _ = require('lodash');
 
@@ -22,7 +22,7 @@ router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next)
    .catch(next);
 });
 
-router.put('/:userId', ensureAuthenticated, function(req, res, next){
+router.put('/:userId', function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
     console.log(req.body)
@@ -31,12 +31,11 @@ router.put('/:userId', ensureAuthenticated, function(req, res, next){
   .catch(next);
 })
 
-router.delete('/:userId', ensureAuthenticated, function(req, res, next){
+router.delete('/:userId', function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
     console.log('hit the delete')
     user.destroy();
-    res.redirect('http://google.com')
   })
   .catch(next);
 })
