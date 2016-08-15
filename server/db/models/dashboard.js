@@ -5,5 +5,5 @@ var db = require('../_db');
 
 module.exports = db.define('dashboard', {
 	name: Sequelize.STRING,
-    description: Sequelize.STRING
+  description: Sequelize.STRING
 	});
