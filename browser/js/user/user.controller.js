@@ -11,13 +11,17 @@ app.controller('userCtrl', function ($scope, userFactory) {
 	$scope.delete = function(id){
 		 return userFactory.deleteUser(id)
 	}
+	$scope.addDashboard = function(id, content){
+    	return userFactory.addDashboard(id, content)
+  	}
 
-  $scope.addDashboard = function(id, content){
-    return userFactory.addDashboard(id, content)
-  }
+	$scope.updateDashboard = function(id, dashId, content){
+		console.log('hit me')
+  		return userFactory.updateDashboard(id, dashId, content)
+  	}
 
-  $scope.deleteDashboard = function(id, dashId){
-    return userFactory.deleteDashboard(id, dashId);
-  }
+	$scope.deleteDashboard = function(id, dashId){
+    	return userFactory.deleteDashboard(id, dashId);
+  	}
 
 });

@@ -14,6 +14,7 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
+//User's Routes
 router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next) {
    Dashboard.findAll( {where: {userId: req.params.userId}})
    .then(function(boards) {
@@ -37,7 +38,7 @@ router.delete('/:userId', function(req, res, next){
   })
   .catch(next);
 })
-
+//User's Dashboard Routes
 router.post('/:id/dashboard', function(req, res, next){
   return Dashboard.create({
       userId: req.params.id,
@@ -45,6 +46,13 @@ router.post('/:id/dashboard', function(req, res, next){
       description: req.body.description
   }).catch(next)
 });
+
+router.put('/:id/dashboard/:dashboardId', function(req, res, next){
+  console.log('route got hit')
+  Dashboard.findById(req.params.dashboardId)
+  .then(dashboard => dashboard.update(req.body))
+  .catch(next)
+})
 
 router.delete('/:id/dashboard/:dashboardId', function(req, res, next){
   Dashboard.findById(req.params.dashboardId)
