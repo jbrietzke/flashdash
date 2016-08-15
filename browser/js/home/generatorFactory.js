@@ -31,7 +31,7 @@ app.factory('generator', function() {
   /**
    *  Data & Options Generators
    */
-  function lineChartOptions(xparam, yparam) {
+  function lineChartOptions(xparam, yparam) { //TODO: make line chart a constructor
     return {
             chart: {
                 type: 'lineChart',

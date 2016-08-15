@@ -42,7 +42,7 @@ app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidg
 
       $scope.config = { visible: false, autorefresh: true };
 
-      //make chart visible after grid have been created
+      //make chart visible after grid have been created - TODO: change to grid.onload event
       $timeout(function(){
         $scope.config.visible = true;
       }, 200);
