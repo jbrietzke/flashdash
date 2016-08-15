@@ -17,19 +17,26 @@ app.factory('dashboardFactory', function($http, $q, generator){
             dashboard = _dashboard
             let promises = []
             dashboard.charts.forEach(function (e) {
-                obj.getDataSource(e.dataSource)
+                let prom = obj.getDataSource(e.dataSource);
+                promises.push(prom);
+                prom
                 .then(function (sourceData) {
-                    promises.push(sourceData);
                     e.chart = {
                         options: generator[e.type].options(e.xparam, e.yparam),
-                        data: sourceData,
+                        data: [{
+                            values:sourceData,
+                            key: "this works",
+                            color: '#ff7f0e'
+                        }],
                         api: {}
                     }
                 })
             })
             return Promise.all(promises)
         })
-        .then(charts => dashboard)
+        .then(function(retstuff) {
+            return dashboard
+        })
     }
 
     obj.saveLayout = function (dashboardId, layout) {

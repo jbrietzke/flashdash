@@ -31,7 +31,7 @@ app.factory('generator', function() {
   /**
    *  Data & Options Generators
    */
-  function lineChartOptions() {
+  function lineChartOptions(xparam, yparam) {
     return {
             chart: {
                 type: 'lineChart',
@@ -41,8 +41,8 @@ app.factory('generator', function() {
                     bottom: 40,
                     left: 55
                 },
-                x: function(d){ return d.x; },
-                y: function(d){ return d.y; },
+                x: function(d, i){ return i; },   // HACK to remove!
+                y: function(d){ return d[yparam]; },
                 useInteractiveGuideline: true,
                 xAxis: {
                     axisLabel: 'Time (ms)',
@@ -90,7 +90,7 @@ app.factory('generator', function() {
     ];
   }
 
-  function discreteBarChartOptions() {
+  function discreteBarChartOptions(xparam, yparam) {
     return {
             chart: {
                 type: 'discreteBarChart',
@@ -100,8 +100,8 @@ app.factory('generator', function() {
                     bottom: 30,
                     left: 55
                 },
-                x: function(d){return d.label; },
-                y: function(d){return d.value; },
+                x: function(d){return d[xparam]; },
+                y: function(d){return d[yparam]; },
                 showValues: true,
                 valueFormat: function(d){
                     return d3.format(',.0f')(d);
@@ -118,7 +118,7 @@ app.factory('generator', function() {
             }
         }
   }
-  function discreteBarChartData() {
+  function discreteBarChartData(xparam, yparam) {
     return [
             {
                 key: "Cumulative Return",
@@ -160,7 +160,7 @@ app.factory('generator', function() {
         ];
   }
 
-  function pieChartOptions() {
+  function pieChartOptions(xparam, yparam) {
     return {
             chart: {
                 type: 'pieChart',
@@ -213,7 +213,7 @@ app.factory('generator', function() {
         ];
   }
 
-  function candlestickBarChartOptions() {
+  function candlestickBarChartOptions(xparam, yparam) {
     return {
       chart: {
         type: 'candlestickBarChart',
@@ -321,7 +321,7 @@ app.factory('generator', function() {
   ]}];
   }
 
-  function cumulativeLineChartOptions() {
+  function cumulativeLineChartOptions(xparam, yparam) {
     return {
       chart: {
         type: 'cumulativeLineChart',
@@ -356,7 +356,7 @@ app.factory('generator', function() {
     }
   }
 
-  function boxPlotChartOptions(){
+  function boxPlotChartOptions(xparam, yparam){
     return {
       chart: {
         type: 'boxPlotChart',
@@ -408,7 +408,7 @@ app.factory('generator', function() {
       ];
     }
 
-    function stackedAreaChartOptions(){
+    function stackedAreaChartOptions(xparam, yparam){
       return {
         chart: {
           type: 'stackedAreaChart',
