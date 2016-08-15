@@ -1,4 +1,32 @@
 <div>
+  <div class="header">
+    <h1>Welcome {{user.firstName}} to your account page</h1>
+  </div>
+  <div class="container">
+    <table>
+      <th>Here are your current dashboard</th>
+      <tr ng-repeat='dashboard in allDashBoards'>
+        <td>{{dashboard.name}}</td>
+        <td><button class="btn btn-success" ng-click='updateDashboard(id, data)'>Edit</button></td>
+        <td><button class="btn btn-danger" ng-click='deleteDashboard(id, dashboard.id)'>Delete</button></td>
+      </tr>
+      <tr>
+        <td><button class="btn btn-primary" ng-click='addDashboard(id, content)'>Create New Dashboard</button></td>
+      </tr>
+    </table>
+  </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+<!-- <div>
 <p>We are here in the user page</p>
 <button ng-click='update(id, data)'>Update User Route</button>
 <button ng-click='delete(id)'>Delete User Route</button>
@@ -12,4 +40,4 @@
     <button class='btn' ng-click='updateDashboard(id, dashboard.id, content)'>Update</button>
   </p>
 </div>
-</div>
+</div> -->

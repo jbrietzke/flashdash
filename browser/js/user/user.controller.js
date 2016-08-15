@@ -15,7 +15,7 @@ app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
 
 $scope.data = {'firstName':'Ray'};
   $scope.content = {'name' : 'practiceDash', 'description': 'A practice for perfection'};
- 
+
 
 	$scope.update = function(id, userData){
 		return userFactory.updateUser(id, userData);
