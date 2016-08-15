@@ -20,6 +20,7 @@ router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next)
    .then(function(boards) {
     res.send(boards);
    })
+
    .catch(next);
 });
 
@@ -28,6 +29,7 @@ router.put('/:userId', ensureAuthenticated, function(req, res, next){
   .then(function(user){
     return user.update(req.body);
   })
+  .then(()=> res.send('User Updated'))
   .catch(next);
 })
 
@@ -39,6 +41,7 @@ router.delete('/:userId', ensureAuthenticated, function(req, res, next){
   .then(function(){
     req.session.destroy();
   })
+  .then(()=> res.send('User Destroyed'))
   .catch(next);
 })
 //User's Dashboard Routes
@@ -47,19 +50,23 @@ router.post('/:id/dashboard', ensureAuthenticated, function(req, res, next){
       userId: req.params.id,
       name: req.body.name,
       description: req.body.description
-  }).catch(next)
+  })
+  .then(()=> res.send('Dashboard Created'))
+  .catch(next)
 });
 
 router.put('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res, next){
   console.log('route got hit')
   Dashboard.findById(req.params.dashboardId)
   .then(dashboard => dashboard.update(req.body))
+  .then(()=> res.send('Dashboard Updated'))
   .catch(next)
 })
 
 router.delete('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res, next){
   Dashboard.findById(req.params.dashboardId)
-  .then(dashboard => dashboard.destroy)
+  .then(dashboard => dashboard.destroy())
+  .then(()=> res.send('Dashboard Destroyed'))
   .catch(next)
 })
 

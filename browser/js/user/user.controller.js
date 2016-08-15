@@ -24,17 +24,22 @@ $scope.data = {'firstName':'Ray'};
 		 return userFactory.deleteUser(id);
 	}
 	$scope.addDashboard = function(id, content){
-    	return userFactory.addDashboard(id, content);
+    	return userFactory.addDashboard(id, content)
+    	 .then(function(){
+    		$state.reload()
+    	})
   	}
 
 	$scope.updateDashboard = function(id, dashId, content){
   		return userFactory.updateDashboard(id, dashId, content)
+  		 .then(function(){
+    		$state.reload()
+    	})
   	}
 
 	$scope.deleteDashboard = function(id, dashId){
     	return userFactory.deleteDashboard(id, dashId)
     	.then(function(){
-    		console.log('hit the delete reload')
     		$state.reload()
     	})
   	}
