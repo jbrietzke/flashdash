@@ -1,7 +1,9 @@
   app.controller('WidgetSettingsCtrl', ['$scope', 'dashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'generator',
     function($scope, dashboardFactory, $timeout, $rootScope, $modalInstance, widget, generator) {
       $scope.widget = widget;
-      console.log(widget)
+      if(widget.chart.data && widget.chart.data[0].values){
+        $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
+      }
 
       $scope.widgetTypes = Object.keys(generator);
 
@@ -17,7 +19,8 @@
         xparam: widget.xparam
       };
 
-      let dataInNVD3Format;
+
+    let dataInNVD3Format;
      $scope.setKeys = function(){
       dashboardFactory.getDataSource($scope.form.dataSource)
       .then(function(data){
