@@ -11,6 +11,23 @@ router.get('/:id', function (req,res,next) {
 	.catch(next)
 });
 
+router.post('/:id', function(req, res, next){
+	return Dashboard.create({
+		where:{
+			userId: req.body.id,
+			name: req.body.name,
+			description: req.body.description
+		}
+	}).catch(next)
+});
+
+router.delete('/:id', function(req, res, next){
+	Dashboard.findById(req.params.id)
+	.then(dashboard => dashboard.destory())
+	.catch(next)
+})
+
+
 router.put('/:id', function (req,res,next) {
 	let dashboard;
 	Dashboard.findById(req.params.id,{
