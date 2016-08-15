@@ -36,19 +36,19 @@
      }
 
 
-      $scope.sizeOptions = [{
-        id: '1',
-        name: '1'
-      }, {
-        id: '2',
-        name: '2'
-      }, {
-        id: '3',
-        name: '3'
-      }, {
-        id: '4',
-        name: '4'
-      }];
+      // $scope.sizeOptions = [{
+      //   id: '1',
+      //   name: '1'
+      // }, {
+      //   id: '2',
+      //   name: '2'
+      // }, {
+      //   id: '3',
+      //   name: '3'
+      // }, {
+      //   id: '4',
+      //   name: '4'
+      // }];
 
       $scope.dismiss = function() {
         $modalInstance.dismiss();
@@ -61,17 +61,18 @@
 
       $scope.submit = function() {
         angular.extend(widget, $scope.form);
-
+        console.log(widget, $scope.form)
         //update with new options
         if (widget.type) {
           widget.chart.options = generator[widget.type].options(widget.xparam, widget.yparam);
         }
         $modalInstance.close(widget);
+        
+        $timeout(function(){
+          widget.chart.api.refresh();
+        },0)
 
         //update new chart
-        $timeout(function(){
-          widget.chart.api.update();
-        },600)
       };
 
     }

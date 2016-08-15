@@ -15,7 +15,7 @@ app.controller('CustomWidgetCtrl', ['$scope', '$modal',
 	          return widget;
 	        }
 	      }
-	    });
+	    })
 	  };
 
 }
