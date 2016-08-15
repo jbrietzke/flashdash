@@ -3,8 +3,12 @@ var router = require('express').Router();
 module.exports = router;
 
 router.use('/members', require('./members'));
+
+router.use('/dashboards', require('./dashboards/dashboard.routes'))
+
 router.use('/users', require('./users'));
 router.use('/dummyData', require('./dummyData'));
+
 
 // Make sure this is after all of
 // the registered routes!

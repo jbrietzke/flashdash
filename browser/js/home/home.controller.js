@@ -1,5 +1,6 @@
-app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory', 
-    function($scope, $timeout, sampleWidgetFactory) {
+app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidgetFactory', 'dashboard',
+    function($scope, dashboardFactory, $timeout, sampleWidgetFactory, dashboard) {
+      console.log(dashboard)
       $scope.gridsterOptions = {
         margins: [20, 20],
         columns: 16,
@@ -28,10 +29,7 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory',
           }
         }
       };
-      //console.log(generator)
-      $scope.dashboard = {
-        widgets: sampleWidgetFactory
-      };
+      $scope.dashboard = dashboard;
 
       // widget events
       $scope.events = {
@@ -42,7 +40,7 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory',
         }
       };
 
-      $scope.config = { visible: false };
+      $scope.config = { visible: false, autorefresh: true };
 
       //make chart visible after grid have been created
       $timeout(function(){
@@ -56,15 +54,21 @@ app.controller('homeCtrl', ['$scope', '$timeout', 'sampleWidgetFactory',
 
       // grid manipulation
       $scope.clear = function() {
-        $scope.dashboard.widgets = [];
+        $scope.dashboard.charts = [];
       };
 
       $scope.addWidget = function() {
-        $scope.dashboard.widgets.push({
+        $scope.dashboard.charts.push({
           name: "New Widget",
           sizeX: 4,
           sizeY: 4
         });
       };
+
+      $scope.saveLayout = function () {
+        dashboardFactory.saveLayout(1, $scope.dashboard.charts)
+        .then(function (data) {
+        })
+      }
     }
   ]);
