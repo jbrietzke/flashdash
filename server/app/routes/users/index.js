@@ -50,7 +50,7 @@ router.post('/:id/dashboard', ensureAuthenticated, function(req, res, next){
   }).catch(next)
 });
 
-router.put('/:id/dashboard/:dashboardId', ensureAuthenticated,  function(req, res, next){
+router.put('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res, next){
   console.log('route got hit')
   Dashboard.findById(req.params.dashboardId)
   .then(dashboard => dashboard.update(req.body))
@@ -59,7 +59,7 @@ router.put('/:id/dashboard/:dashboardId', ensureAuthenticated,  function(req, re
 
 router.delete('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res, next){
   Dashboard.findById(req.params.dashboardId)
-  .then(dashboard => dashboard.destroy())
+  .then(dashboard => dashboard.destroy)
   .catch(next)
 })
 

@@ -13,9 +13,9 @@ app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
   })
 
 
-	$scope.data = {'firstName':'Ray'};
+$scope.data = {'firstName':'Ray'};
   $scope.content = {'name' : 'practiceDash', 'description': 'A practice for perfection'};
-  $scope.dashId = 1;
+ 
 
 	$scope.update = function(id, userData){
 		return userFactory.updateUser(id, userData);
@@ -28,11 +28,15 @@ app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
   	}
 
 	$scope.updateDashboard = function(id, dashId, content){
-  		return userFactory.updateDashboard(id, dashId, content);
+  		return userFactory.updateDashboard(id, dashId, content)
   	}
 
 	$scope.deleteDashboard = function(id, dashId){
-    	return userFactory.deleteDashboard(id, dashId);
+    	return userFactory.deleteDashboard(id, dashId)
+    	.then(function(){
+    		console.log('hit the delete reload')
+    		$state.reload()
+    	})
   	}
 
 

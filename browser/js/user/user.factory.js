@@ -26,7 +26,6 @@ app.factory('userFactory', function($http, AuthService){
 
 	obj.deleteDashboard = function(id, dashId){
     	return $http.delete('api/users/' + id + '/dashboard/' + dashId)
-    	.then(res => res.data);
   	}
 
   obj.getAllDashboards = function(id){
