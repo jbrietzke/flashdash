@@ -6,15 +6,26 @@
   <div class='row'>
     <table class='col-md-4'>
       <th>Here are your current dashboard</th>
+      <button class="btn btn-success" ng-click='editingDashboard()'>Edit</button>
       <tr ng-repeat='dashboard in allDashBoards'>
-        <td>{{dashboard.name}}</td>
-        <td><button class="btn btn-success" ng-click='updateDashboard(id, data)'>Edit</button></td>
+        <td>
+        	<span ng-hide='dashboardEditingMode'>{{dashboard.name}}</span>
+        	<input ng-hide='!dashboardEditingMode' type="text" ng-model='dashboard.name'
+        	placeholder='{{dashboard.name}}'>
+        	<button ng-hide='!dashboardEditingMode' ng-click='updateDashboard(id, dashboard.id, dashboard)'>Save Changes</button>
+        </td>
         <td><button class="btn btn-danger" ng-click='deleteDashboard(id, dashboard.id)'>Delete</button></td>
       </tr>
       <tr>
         <td><button class="btn btn-primary" ng-click='addDashboard(id, content)'>Create New Dashboard</button></td>
       </tr>
+
     </table>
+
+
+
+
+
     <table class="col-md-4">
       <th>Your Account Information</th>
       <button ng-click='toggleEditingMode()'>Allow Editing</button>
