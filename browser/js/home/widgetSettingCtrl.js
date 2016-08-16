@@ -26,10 +26,11 @@
       .then(function(data){
         $scope.dataKeys = Object.keys(data[0]);
         dataInNVD3Format = [{
-        values:data,
-        key: "this works",
-        color: '#ff7f0e'
-        }]
+          values:data,
+          key: "this works",
+          color: '#ff7f0e'
+        }];
+        widget.chart.data = dataInNVD3Format;
       })
 
      }
@@ -60,18 +61,18 @@
 
       $scope.submit = function() {
         angular.extend(widget, $scope.form);
-
-        //update with new options and data
+        console.log(widget, $scope.form)
+        //update with new options
         if (widget.type) {
-          widget.chart.options = generator[widget.type].options(widget.xAxis, widget.yAxis);
-          widget.chart.data = dataInNVD3Format;
+          widget.chart.options = generator[widget.type].options(widget.xparam, widget.yparam);
         }
         $modalInstance.close(widget);
+        
+        $timeout(function(){
+          widget.chart.api.refresh();
+        },0)
 
         //update new chart
-        $timeout(function(){
-          widget.chart.api.update();
-        },600)
       };
 
     }

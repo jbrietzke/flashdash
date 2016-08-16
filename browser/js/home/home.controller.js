@@ -57,6 +57,12 @@ app.controller('homeCtrl', ['$scope', 'dashboardFactory','$timeout', 'sampleWidg
         $scope.dashboard.charts = [];
       };
 
+      $scope.blab = function() {
+        console.log("\n=====================");
+        console.log($scope.dashboard.charts[0]);
+        console.log("=====================");
+      }
+
       $scope.addWidget = function() {
         $scope.dashboard.charts.push({
           name: "New Widget",
