@@ -1,11 +1,11 @@
-  app.controller('WidgetSettingsCtrl', ['$scope', 'dashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'generator',
-    function($scope, dashboardFactory, $timeout, $rootScope, $modalInstance, widget, generator) {
+  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory',
+    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory) {
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
       }
 
-      $scope.widgetTypes = Object.keys(generator);
+      $scope.widgetTypes = Object.keys(GeneratorFactory);
 
       $scope.form = {
         name: widget.name,
@@ -22,7 +22,7 @@
 
     let dataInNVD3Format;
      $scope.setKeys = function(){
-      dashboardFactory.getDataSource($scope.form.dataSource)
+      DashboardFactory.getDataSource($scope.form.dataSource)
       .then(function(data){
         $scope.dataKeys = Object.keys(data[0]);
         dataInNVD3Format = [{
@@ -64,7 +64,7 @@
         console.log(widget, $scope.form)
         //update with new options
         if (widget.type) {
-          widget.chart.options = generator[widget.type].options(widget.xparam, widget.yparam);
+          widget.chart.options = GeneratorFactory[widget.type].options(widget.xparam, widget.yparam);
         }
         $modalInstance.close(widget);
         

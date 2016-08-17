@@ -1,5 +1,5 @@
 // angular.module('plunker.services', [])
-app.factory('generator', function() {
+app.factory('GeneratorFactory', function() {
   return {
     lineChart: {
       options: lineChartOptions,
