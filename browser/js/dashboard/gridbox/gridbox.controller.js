@@ -66,7 +66,7 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'sampleW
       };
 
       $scope.saveLayout = function () {
-        DashboardFactory.saveLayout(1, $scope.dashboard.charts)
+        DashboardFactory.saveLayout($scope.dashboard.id, $scope.dashboard.charts)
         .then(function (data) {
         })
       }

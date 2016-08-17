@@ -8,7 +8,7 @@ app.controller('WidgetCtrl', ['$scope', '$modal',
 	  $scope.openSettings = function(widget) {
 	    $modal.open({
 	      scope: $scope,
-	      templateUrl: '/js/home/widgetSettings.html',
+	      templateUrl: '/js/dashboard/gridbox/widgetSettings.html',
 	      controller: 'WidgetSettingsCtrl',
 	      resolve: {
 	        widget: function() {
