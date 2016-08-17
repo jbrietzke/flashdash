@@ -4,6 +4,9 @@ app.config(function ($stateProvider) {
         url: '/dash',
         templateUrl: 'js/dashboard/dashboard.html',
         controller: 'dashboardCtrl',
+        params : {
+            dashToLoad: null
+        },
         resolve: { 
             dashList: ['userFactory', function(userFactory) {
                 return userFactory.getAllDashboards()

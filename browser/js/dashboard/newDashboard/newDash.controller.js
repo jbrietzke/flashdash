@@ -9,7 +9,7 @@ app.controller('newDashboardCtrl', function (userFactory,$state,$uibModalInstanc
 	 	// angular.extend(dashboard, $scope.form)
 		return userFactory.addDashboard($scope.id, $scope.form)
 	    .then(function(){
-	    	$state.go('dashboard')
+	    	$state.go('dashboard', {dashToLoad: $scope.form})
 	    })
 	}
 })
