@@ -43,16 +43,16 @@ app.factory('generator', function() {
                 },
                 x: function(d, i){ return i; },   // HACK to remove!
                 y: function(d){ return d[yparam]; },
-                useInteractiveGuideline: true,
+                useInteractiveGuideline: false,
                 xAxis: {
                     axisLabel: 'Time (ms)',
                     axisLabelDistance: -5
                 },
                 yAxis: {
                     axisLabel: 'Voltage (v)',
-                    tickFormat: function(d){
-                        return d3.format('.02f')(d);
-                    },
+                    // tickFormat: function(d){
+                    //     return d3.format('.02f')(d);
+                    // },
                     axisLabelDistance: -10
                 },
                 showLegend: false
