@@ -76,7 +76,6 @@
 
       $scope.submit = function() {
         angular.extend(widget, $scope.form);
-        // console.log(widget, $scope.form)
         //update with new options
         if (widget.type) {
           widget.chart.options = generator[widget.type].options(widget.xparam, widget.yparam);
