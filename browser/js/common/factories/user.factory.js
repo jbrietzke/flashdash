@@ -31,9 +31,9 @@ app.factory('userFactory', function($http, AuthService){
   	}
 
   	obj.getAllDashboards = function(){
-  		return AuthService.getLoggedInUser
+  		return AuthService.getLoggedInUser()
   		.then(function (user) {
-  			return $http.get('api/users/' + id + '/dashboards')
+  			return $http.get('api/users/' + user.id + '/dashboards')
   		})
     	.then(res => res.data);
   	}
