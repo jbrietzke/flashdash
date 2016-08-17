@@ -44,7 +44,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     	let obj = layout.map(function (e) {
     		return {
                 name: e.name,
-    			dataSource: e.dataSource || 'http://www.google.com', //this needs to change at some point
+    			dataSource: e.dataSource || 'http://localhost:1337/api/dummyData/gitMosane', //this needs to change at some point
     			refreshInterval: e.refreshInterval || 1000,
     			type: e.type,
     			sizeX: e.sizeX,
