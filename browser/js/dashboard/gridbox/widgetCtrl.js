@@ -1,4 +1,4 @@
-app.controller('CustomWidgetCtrl', ['$scope', '$modal',
+app.controller('WidgetCtrl', ['$scope', '$modal',
 	function($scope, $modal) {
 
 	  $scope.remove = function(widget) {
@@ -8,7 +8,7 @@ app.controller('CustomWidgetCtrl', ['$scope', '$modal',
 	  $scope.openSettings = function(widget) {
 	    $modal.open({
 	      scope: $scope,
-	      templateUrl: '/js/home/graphSettings.html',
+	      templateUrl: '/js/home/widgetSettings.html',
 	      controller: 'WidgetSettingsCtrl',
 	      resolve: {
 	        widget: function() {

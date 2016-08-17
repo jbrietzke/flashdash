@@ -1,4 +1,4 @@
-app.factory('dashboardFactory', function($http, $q, generator){
+app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     var obj = {};
     let getData = (res => res.data);
     obj.getDataSource = function(link){
@@ -22,7 +22,7 @@ app.factory('dashboardFactory', function($http, $q, generator){
                 prom
                 .then(function (sourceData) {
                     e.chart = {
-                        options: generator[e.type].options(e.xparam, e.yparam),
+                        options: GeneratorFactory[e.type].options(e.xparam, e.yparam),
                         data: [{
                             values:sourceData,
                             key: "this works",

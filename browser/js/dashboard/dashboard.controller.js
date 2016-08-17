@@ -1,5 +1,5 @@
 
-app.controller('dashboardCtrl', function($scope, ConstFactory, dashboardFactory) {
+app.controller('dashboardCtrl', function($scope, ConstFactory, DashboardFactory) {
 
     $scope.Data = {counter: 0};
 
@@ -12,7 +12,7 @@ app.controller('dashboardCtrl', function($scope, ConstFactory, dashboardFactory)
     // TODO: Put the charts for the selected dashboard on the scope here
     $scope.$on(ConstFactory.EVENT_DB_SELECTED, function(event, chosen) {
         console.log("The data must be udpated!  Dashboard is", chosen)
-        dashboardFactory.getDashboard(chosen.id)
+        DashboardFactory.getDashboard(chosen.id)
         .then(db => {
             $scope.dashboard = db;
         })
