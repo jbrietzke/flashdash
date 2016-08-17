@@ -9,6 +9,7 @@ app.controller('dashboardCtrl', function($scope, ConstFactory, DashboardFactory)
     $scope.dashDesc = "Please create a dashboard";
     $scope.dashboard = null;
 
+
     // TODO: Put the charts for the selected dashboard on the scope here
     $scope.$on(ConstFactory.EVENT_DB_SELECTED, function(event, chosen) {
         console.log("The data must be udpated!  Dashboard is", chosen)
