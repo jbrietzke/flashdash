@@ -1,8 +1,23 @@
 <section id="gridbox">
+  <div>
+    <div>
+    <select ng-options="dashboard as dashboard.name for dashboard in dashboardList " ng-model="selectedDb" ng-change="update()" class="db-drop-menu big-right-space"></select>
+    </div>
 
-    <button ng-click=saveLayout()> Save! </button>
-    <button ng-click=addWidget()>Add Widget</button>
-    <button ng-click=clear()>Clear All Widgets</button>
+
+    <label>
+        <h3>Layout Controls: </h3>
+    </label>
+    <button
+        ng-class='{ editlocked: !editable, editunlocked: editable}'
+        class='btn button-space sml-right-space'
+        ng-disabled='dashboardList.length < 1'
+        ng-click='editable = !editable'>
+        Editing {{editable ? "enabled" : "disabled"}}</button>
+    <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=saveLayout()> Save! </button>
+    <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=addWidget()>Add Widget</button>
+    <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=clear()>Clear All Widgets</button>
+  </div>
     <div gridster="gridsterOptions" class='ng-scope gridster-desktop gridster-loaded'>
     <ul class="with-3d-shadow with-transitions">
       <li gridster-item="widget" ng-repeat="widget in dashboard.charts">

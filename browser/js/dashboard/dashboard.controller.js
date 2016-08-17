@@ -1,25 +1,30 @@
 
-app.controller('dashboardCtrl', function($scope, ConstFactory, DashboardFactory) {
+app.controller('dashboardCtrl', ['$scope', 'DashboardFactory', '$rootScope', 'UserFactory', 'dashList',
+    function($scope, DashboardFactory, $rootScope, UserFactory, dashList) {
 
-    $scope.Data = {counter: 0};
-
-    // These will be managed by the child scope in the controller bar
     $scope.editable = false;
     $scope.dashName = "You have no dashboards";
     $scope.dashDesc = "Please create a dashboard";
     $scope.dashboard = null;
 
-    // TODO: Put the charts for the selected dashboard on the scope here
-    $scope.$on(ConstFactory.EVENT_DB_SELECTED, function(event, chosen) {
-        console.log("The data must be udpated!  Dashboard is", chosen)
-        DashboardFactory.getDashboard(chosen.id)
-        .then(db => {
-            $scope.dashboard = db;
-        })
-    })
+    $scope.update = function() {
+        if ($scope.selectedDb) {
+            $scope.dashName = $scope.selectedDb.name;
+            $scope.dashDesc = $scope.selectedDb.description;
+            console.log("The data is being udpated!  Dashboard is", $scope.selectedDb)
+            DashboardFactory.getDashboard($scope.selectedDb.id)
+            .then(db => {
+                $scope.dashboard = db;
+                $scope.$applyAsync();
+            })
+        }
+    };
 
-    $scope.blab = function() {
-        console.log($scope.dashboard);
-    }
+    // The resolve fetched a list of dashboards for this user.  Note that this
+    // does not entail the graphs, which must be fetched later.
+    $scope.dashboardList = dashList;
+    if (dashList.length > 0)
+        $scope.selectedDb = dashList[0];
+    $scope.update();
 
-});
+}]);
