@@ -11,6 +11,8 @@ app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '
         if ($scope.selectedDb) {
             $scope.dashName = $scope.selectedDb.name;
             $scope.dashDesc = $scope.selectedDb.description;
+            $scope.editable = false;
+
             DashboardFactory.getDashboard($scope.selectedDb.id)
             .then(db => {
                 $scope.dashboard = db;

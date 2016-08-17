@@ -2,7 +2,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('dashboard', {
         url: '/dash',
-        templateUrl: 'js/dashboard/dashboard.html',
+        template: '<gridboxdiv></gridboxdiv>',
         controller: 'dashboardCtrl',
         params : {
             dashToLoad: null
