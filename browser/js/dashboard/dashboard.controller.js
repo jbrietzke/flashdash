@@ -11,7 +11,7 @@ app.controller('dashboardCtrl', ['$scope', 'DashboardFactory', '$rootScope', 'da
         if ($scope.selectedDb) {
             $scope.dashName = $scope.selectedDb.name;
             $scope.dashDesc = $scope.selectedDb.description;
-            console.log("The data is being udpated!  Dashboard is", $scope.selectedDb)
+            $scope.editable = false;
             DashboardFactory.getDashboard($scope.selectedDb.id)
             .then(db => {
                 $scope.dashboard = db;
