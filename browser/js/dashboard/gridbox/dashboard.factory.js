@@ -61,5 +61,20 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
     	return $http.put('/api/dashboards/' + dashboardId, obj)
         .then(getData)
     }
+
+    obj.getCharts = function(dashboardId){
+    return $http.get('/api/dashboards/' + dashboardId + '/charts')
+    .then(res => res.data)
+    }
+
+    obj.findLiveCharts = function(chartsArray){
+        var liveChartsArray = [];
+        console.log('factory got called');
+        chartsArray.forEach(function(elem, index, array){
+        if (elem.refreshInterval > 0) {
+        liveChartsArray.push(elem);
+        }
+        })
+    }
     return obj;
 });
