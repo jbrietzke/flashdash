@@ -29,7 +29,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
                             key: "this works",
                             color: '#ff7f0e'
                         }],
-                        api: {}
+                        // api: {}
                     }
                 })
             })

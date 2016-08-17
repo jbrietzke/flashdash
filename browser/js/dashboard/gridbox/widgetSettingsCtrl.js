@@ -1,5 +1,6 @@
-  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory',
-    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory) {
+  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory', '$interval',
+    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory, $interval) {
+      console.log('this is a widget', widget);
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
@@ -16,7 +17,7 @@
         type: widget.type,
         dataSource: widget.dataSource,
         yparam: widget.yparam,
-        xparam: widget.xparam
+        xparam: widget.xparam,
       };
 
 
@@ -70,9 +71,11 @@
         }
         $modalInstance.close(widget);
 
-        $timeout(function(){
-          widget.chart.api.refresh();
-        },0)
+        $interval(function(){
+          $scope.setKeys();
+        widget.chart.api.refresh();
+
+        },5000)
 
         //update new chart
       };

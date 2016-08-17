@@ -99,10 +99,9 @@ $scope.liveCharts = [];
     })
   }
 
-  $scope.timeSeriesCharts = function(id){
-    DashboardFactory.getDashboard(id)
-    .then(function(db){
-      $scope.dashboard = db;
+  $scope.timeSeriesCharts = function(){
+    $scope.liveCharts.forEach(function(e,i,a){
+      console.log(e);
     })
   }
 
