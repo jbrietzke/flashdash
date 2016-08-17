@@ -30,10 +30,13 @@ app.factory('userFactory', function($http, AuthService){
     	return $http.delete('api/users/' + id + '/dashboard/' + dashId)
   	}
 
-  	obj.getAllDashboards = function(id){
-    return $http.get('api/users/' + id + '/dashboards')
-    .then(res => res.data);
-  }
+  	obj.getAllDashboards = function(){
+  		return AuthService.getLoggedInUser()
+  		.then(function (user) {
+  			return $http.get('api/users/' + user.id + '/dashboards')
+  		})
+    	.then(res => res.data);
+  	}
 
 	return obj
 })

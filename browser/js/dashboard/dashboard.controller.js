@@ -1,6 +1,6 @@
 
-app.controller('dashboardCtrl', ['$scope', 'DashboardFactory', '$rootScope', 'UserFactory', 'dashList',
-    function($scope, DashboardFactory, $rootScope, UserFactory, dashList) {
+app.controller('dashboardCtrl', ['$scope', 'DashboardFactory', '$rootScope', 'dashList',
+    function($scope, DashboardFactory, $rootScope, dashList) {
 
     $scope.editable = false;
     $scope.dashName = "You have no dashboards";

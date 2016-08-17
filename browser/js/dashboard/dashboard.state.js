@@ -5,8 +5,8 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/dashboard/dashboard.html',
         controller: 'dashboardCtrl',
         resolve: { 
-            dashList: ['UserFactory', function(UserFactory) {
-                return UserFactory.getDashboards()
+            dashList: ['userFactory', function(userFactory) {
+                return userFactory.getAllDashboards()
             }]
         }
     });
