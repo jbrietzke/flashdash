@@ -7,6 +7,7 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
         // mobileBreakPoint: 1000,
         // mobileModeEnabled: true,
         draggable: {
+          enabled: true,
           handle: 'h3'
         },
         resizable: {
