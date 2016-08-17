@@ -26,15 +26,12 @@
       .then(function(data){
         let realData = findDataToGraph(data);
         $scope.dataKeys = Object.keys(realData[0]);
-        console.log('This is data', realData);
         dataInNVD3Format = [{
           values:realData,
           key: "this works",
           color: '#ff7f0e'
         }];
         widget.chart.data = dataInNVD3Format;
-        console.log('Lets find data');
-        console.log(widget.chart.data);
       })
 
      }
