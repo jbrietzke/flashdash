@@ -1,4 +1,4 @@
-app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
+app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
     var obj = {};
     let getData = (res => res.data);
     obj.getDataSource = function(link){
@@ -7,6 +7,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         }
         return $http.get(link)
         .then(getData)
+        .catch(res => [])
     }
 
     obj.getDashboard = function (dashboardId) {
@@ -24,7 +25,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
                     e.chart = {
                         options: GeneratorFactory[e.type].options(e.xparam, e.yparam),
                         data: [{
-                            values:sourceData,
+                            values:sourceData || [],
                             key: "this works",
                             color: '#ff7f0e'
                         }],

@@ -1,5 +1,5 @@
-app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'sampleWidgetFactory',
-    function($scope, DashboardFactory, $timeout, sampleWidgetFactory) {
+app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
+    function($scope, DashboardFactory, $timeout) {
       console.log(dashboard)
       $scope.gridsterOptions = {
         margins: [20, 20],
