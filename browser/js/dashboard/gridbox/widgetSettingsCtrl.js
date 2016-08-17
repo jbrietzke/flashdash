@@ -1,5 +1,5 @@
-  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory',
-    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory) {
+  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$uibModalInstance', 'widget', 'GeneratorFactory',
+    function($scope, DashboardFactory, $timeout, $rootScope, $uibModalInstance, widget, GeneratorFactory) {
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
@@ -51,12 +51,12 @@
   }
 
       $scope.dismiss = function() {
-        $modalInstance.dismiss();
+        $uibModalInstance.dismiss();
       };
 
       $scope.remove = function() {
         $scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
-        $modalInstance.close();
+        $uibModalInstance.close();
       };
 
       $scope.submit = function() {
@@ -65,7 +65,7 @@
         if (widget.type) {
           widget.chart.options = GeneratorFactory[widget.type].options(widget.xparam, widget.yparam);
         }
-        $modalInstance.close(widget);
+        $uibModalInstance.close(widget);
 
         $timeout(function(){
           widget.chart.api.refresh();
