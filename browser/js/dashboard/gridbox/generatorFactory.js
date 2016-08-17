@@ -24,6 +24,10 @@ app.factory('GeneratorFactory', function() {
     stackedAreaChart : {
       options: stackedAreaChartOptions,
       data : stackedAreaChartData
+    },
+    scatterChart: {
+      options : scatterChartOptions
+      // data : scatterChartData
     }
   };
 
@@ -31,7 +35,36 @@ app.factory('GeneratorFactory', function() {
   /**
    *  Data & Options Generators
    */
-  function lineChartOptions(xparam, yparam) { //TODO: make line chart a constructor
+function scatterChartOptions(xparam, yparam){
+  return {
+    chart: {
+      type: 'scatterChart',
+      margin : {
+                    top: 40,
+                    right: 20,
+                    bottom: 40,
+                    left: 55
+                },
+      scatter: {
+                onlyCircles: false
+                },
+      showDistX: true,
+      showDistY: true,
+      duration: 100,
+      x: function(d, i){ return i; },   // HACK to remove!
+      y: function(d){ return d[yparam]; },
+      xAxis: {
+        axisLabel: 'X Axis',
+        },
+      yAxis: {
+              axisLabel: 'Y Axis',
+              axisLabelDistance: -5
+                }
+      }
+    }
+  }
+
+  function lineChartOptions(xparam, yparam) {
     return {
             chart: {
                 type: 'lineChart',
