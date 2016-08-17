@@ -25,6 +25,9 @@
       DashboardFactory.getDataSource($scope.form.dataSource)
       .then(function(data){
         let realData = findDataToGraph(data);
+        if (!realData) {
+          realData = [data];
+        }
         $scope.dataKeys = Object.keys(realData[0]);
         dataInNVD3Format = [{
           values:realData,

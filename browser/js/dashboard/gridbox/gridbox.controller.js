@@ -77,27 +77,35 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
     $scope.charts = res
     })
   }
-
+$scope.liveCharts = [];
   $scope.setLive= function(){
-    $scope.liveCharts = [];
     $scope.charts.forEach(function(chart){
       if(chart.refreshInterval > 0)
        $scope.liveCharts.push(chart)
     })
+    console.log($scope.liveCharts);
   }
 
   $scope.showCharts = function(){
     $scope.createCharts()
-    }
+  }
 
 
   $scope.findLiveCharts = function(){
-  DashboardFactory.findLiveCharts($scope.charts)
-  .then(function(res){
-  $scope.liveCharts = res;
-  console.log($scope.liveCharts);
-  })
+    DashboardFactory.findLiveCharts($scope.charts)
+    .then(function(res){
+      $scope.liveCharts = res;
+      console.log($scope.liveCharts);
+    })
   }
-    }
+
+  $scope.timeSeriesCharts = function(id){
+    DashboardFactory.getDashboard(id)
+    .then(function(db){
+      $scope.dashboard = db;
+    })
+  }
+
+  }
 
   ]);
