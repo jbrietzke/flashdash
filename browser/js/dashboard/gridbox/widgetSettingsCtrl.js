@@ -1,7 +1,7 @@
   app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory',
     function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory) {
       $scope.widget = widget;
-      if(widget.chart.data && widget.chart.data[0].values){
+      if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
       }
 
@@ -49,21 +49,6 @@
       }
     }
   }
-
-
-      // $scope.sizeOptions = [{
-      //   id: '1',
-      //   name: '1'
-      // }, {
-      //   id: '2',
-      //   name: '2'
-      // }, {
-      //   id: '3',
-      //   name: '3'
-      // }, {
-      //   id: '4',
-      //   name: '4'
-      // }];
 
       $scope.dismiss = function() {
         $modalInstance.dismiss();
