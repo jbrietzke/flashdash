@@ -1,4 +1,4 @@
-app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
+app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     var obj = {};
     let getData = (res => res.data);
     obj.getDataSource = function(link){
@@ -7,7 +7,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
         }
         return $http.get(link)
         .then(getData)
-        .catch(res => [])
+        .catch(() => [])
     }
 
     obj.getDashboard = function (dashboardId) {
@@ -35,14 +35,13 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
             })
             return Promise.all(promises)
         })
-        .then(function(retstuff) {
+        .then(function() {
             return dashboard
         })
     }
 
     obj.saveLayout = function (dashboardId, layout) {
-        console.log(layout)
-    	let obj = layout.map(function (e) {
+    	let thing = layout.map(function (e) {
     		return {
                 name: e.name,
     			dataSource: e.dataSource || 'http://localhost:1337/api/dummyData/gitMosane', //this needs to change at some point
@@ -58,7 +57,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
                 yparam: e.yparam
     		}
     	})
-    	return $http.put('/api/dashboards/' + dashboardId, obj)
+    	return $http.put('/api/dashboards/' + dashboardId, thing)
         .then(getData)
     }
     return obj;
