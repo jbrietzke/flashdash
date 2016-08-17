@@ -24,9 +24,10 @@
      $scope.setKeys = function(){
       DashboardFactory.getDataSource($scope.form.dataSource)
       .then(function(data){
-        $scope.dataKeys = Object.keys(data[0]);
+        let realData = findDataToGraph(data);
+        $scope.dataKeys = Object.keys(realData[0]);
         dataInNVD3Format = [{
-          values:data,
+          values:realData,
           key: "this works",
           color: '#ff7f0e'
         }];
@@ -34,6 +35,20 @@
       })
 
      }
+
+  function findDataToGraph(obj){
+    if(Array.isArray(obj)){
+      return obj;
+    }else if(typeof(obj) === 'object'){
+      var x;
+      for(var key in obj){
+       x = findDataToGraph(obj[key]);
+       if(x){
+        return x;
+       }
+      }
+    }
+  }
 
 
       // $scope.sizeOptions = [{
@@ -61,13 +76,12 @@
 
       $scope.submit = function() {
         angular.extend(widget, $scope.form);
-        console.log(widget, $scope.form)
         //update with new options
         if (widget.type) {
           widget.chart.options = GeneratorFactory[widget.type].options(widget.xparam, widget.yparam);
         }
         $modalInstance.close(widget);
-        
+
         $timeout(function(){
           widget.chart.api.refresh();
         },0)
