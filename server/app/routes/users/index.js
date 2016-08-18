@@ -10,12 +10,22 @@ var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
-        res.status(401).end();
+        res.status(401).send("You must be logged in");
+    }
+};
+
+var ensureRightUser = function (req, res, next) {
+    // Authenticated AND the user ID in the route is the right one
+    if (req.isAuthenticated() && (req.user.id === +req.params.userId)) {
+        next();
+    } else {
+        let message = (req.isAuthenticated()) ? "Can't access data for that user" : "You must be logged in";
+        res.status(401).send(message);
     }
 };
 
 //User's Routes
-router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next) {
+router.get('/:userId/dashboards', ensureRightUser, function (req, res, next) {
    Dashboard.findAll( 
     {where: {userId: req.params.userId},
     order : 'id ASC'}) 
@@ -26,7 +36,7 @@ router.get('/:userId/dashboards', ensureAuthenticated, function (req, res, next)
    .catch(next);
 });
 
-router.put('/:userId', ensureAuthenticated, function(req, res, next){
+router.put('/:userId', ensureRightUser, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
     return user.update(req.body);
@@ -35,7 +45,7 @@ router.put('/:userId', ensureAuthenticated, function(req, res, next){
   .catch(next);
 })
 
-router.delete('/:userId', ensureAuthenticated, function(req, res, next){
+router.delete('/:userId', ensureRightUser, function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
     return user.destroy(); 
@@ -48,9 +58,9 @@ router.delete('/:userId', ensureAuthenticated, function(req, res, next){
 })
 
 //User's Dashboard Routes
-router.post('/:id/dashboard', ensureAuthenticated, function(req, res, next){
+router.post('/:userId/dashboard', ensureRightUser, function(req, res, next){
   Dashboard.create({ 
-      userId: req.params.id,
+      userId: req.params.userId,
       name: req.body.name,
       description: req.body.description
   })
