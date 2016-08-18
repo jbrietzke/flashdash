@@ -2,16 +2,9 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
+const AuthFactory = require("../../configure/authentication/auth-factory")
 
-var ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.status(401).end();
-    }
-};
-
-router.get('/secret-stash', ensureAuthenticated, function (req, res) {
+router.get('/secret-stash', AuthFactory.ensureAuthenticated, function (req, res) {
 
     var theStash = [
         'http://ep.yimg.com/ay/candy-crate/bulk-candy-store-2.gif',

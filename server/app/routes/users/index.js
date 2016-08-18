@@ -3,24 +3,11 @@ var router = require('express').Router();
 const db = require('../../../db');
 const Dashboard = db.model('dashboard');
 const User = db.model('user');
+const AuthFactory = require("../../configure/authentication/auth-factory")
 module.exports = router;
 
-var ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.status(401).send("You must be logged in");
-    }
-};
-
-var ensureRightUser = function (req, res, next) {
-    // Authenticated AND the user ID in the route is the right one
-    if (req.isAuthenticated() && (req.user.id === +req.params.userId)) {
-        next();
-    } else {
-        res.status(401).send("Can't access data for that user");
-    }
-};
+let ensureAuthenticated = AuthFactory.ensureAuthenticated;
+let ensureRightUser = AuthFactory.ensureRightUser;  // Requires :userId property
 
 //User's Routes
 router.get('/:userId/dashboards', ensureAuthenticated, ensureRightUser, function (req, res, next) {
@@ -83,7 +70,7 @@ router.delete('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, 
   Dashboard.findById(req.params.dashboardId)
   .then(function(dashboard) {
     if (dashboard && dashboard.userId && (dashboard.userId !== req.user.id)) {
-        res.status(401).send("Can't access data for that user");
+        res.status(401).send(AuthFactory.wrongUserMessage);
     } else {
       return dashboard.destroy()
       .then(()=> res.send(200))
