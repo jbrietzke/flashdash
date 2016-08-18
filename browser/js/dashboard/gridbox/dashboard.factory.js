@@ -10,6 +10,11 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         .catch(() => [])
     }
 
+    obj.findIndexToLoad = function (arr, nameToLoad) {
+        let indexToLoad = arr.findIndex(e => e.name === nameToLoad)
+        return indexToLoad === -1? 0 : indexToLoad;
+    }
+
     obj.getDashboard = function (dashboardId) {
         let dashboard;
         return $http.get('/api/dashboards/' + dashboardId)
