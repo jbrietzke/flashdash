@@ -12,4 +12,8 @@ app.controller('newDashboardCtrl', function (userFactory,$state,$uibModalInstanc
 	    	$state.go('dashboard', {dashToLoad: $scope.form})
 	    })
 	}
+	$scope.dismiss = function() {
+		console.log('hitting this')
+        $uibModalInstance.dismiss();
+      };
 })
