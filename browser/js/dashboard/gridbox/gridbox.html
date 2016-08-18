@@ -27,6 +27,7 @@
      <button ng-click='setLive()'>Set Live Charts</button>
        <button ng-click='findLiveCharts()'>Find Live Charts</button>
       <button ng-click='timeSeriesCharts(dashboard.id)'>UpdateThoseCharts</button>
+      <button ng-click='updateAllData(dashboard.id)'>UpdateAll</button>
 
 
     </div>
@@ -41,6 +42,7 @@
                      <a ng-click='openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
                      <a ng-click='showMe(widget)'><i class="glyphicon glyphicon-pencil"></i></a>
                      <a ng-click='showMe2(widget)'><i class="glyphicon glyphicon-glass"></i></a>
+                     <a ng-click='updateData(widget)'><i class="glyphicon glyphicon-ok"></i></a>
                      <a ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
                   </div>
               </div>

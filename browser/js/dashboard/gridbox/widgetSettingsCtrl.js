@@ -1,5 +1,5 @@
-  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory', '$interval',
-    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory, $interval) {
+  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory', '$interval', 'WidgetSettingsFactory',
+    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory, $interval,WidgetSettingsFactory) {
       console.log('this is a widget', widget);
 
       $scope.widget = widget;
@@ -23,23 +23,14 @@
 
 
     let dataInNVD3Format;
-     $scope.setKeys = function(){
-      DashboardFactory.getDataSource($scope.form.dataSource)
-      .then(function(data){
-        let realData = findDataToGraph(data);
-        if (!realData) {
-          realData = [data];
-        }
-        $scope.dataKeys = Object.keys(realData[0]);
-        dataInNVD3Format = [{
-          values:realData,
-          key: "this works",
-          color: '#ff7f0e'
-        }];
-        widget.chart.data = dataInNVD3Format;
-      })
-
+     $scope.setKeys = function(dataSource){
+        return WidgetSettingsFactory.newSetKeys(dataSource)
+        .then(function(res){
+          widget.chart.data = res[0];
+          $scope.dataKeys = res[1];
+        })
      }
+     $scope.setKeys($scope.form.dataSource);
 
   function findDataToGraph(obj){
     if(Array.isArray(obj)){

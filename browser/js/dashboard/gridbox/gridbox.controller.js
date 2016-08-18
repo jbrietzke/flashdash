@@ -1,5 +1,5 @@
-app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
-    function($scope, DashboardFactory, $timeout) {
+app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope',
+    function($scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope) {
       console.log(dashboard)
       $scope.gridsterOptions = {
         margins: [20, 20],
@@ -105,6 +105,21 @@ $scope.liveCharts = [];
       console.log(e);
     })
   }
+
+  $scope.updateAllData = function(dbId){
+    $rootScope.$broadcast('updateYourself');
+    console.log('updatingData');
+    DashboardFactory.getCharts(dbId)
+    .then(function(allCharts){
+      allCharts.forEach(function(e){
+        console.log('this is E', e);
+        return WidgetSettingsFactory.newSetKeys(e.dataSource)
+        .then(function(res){
+          console.log('holder');
+        })
+      })
+    })
+  };
 
   }
 
