@@ -1,13 +1,12 @@
 
-<md-content md-colors='blue'>
-<nav class="navbar navbar-static-top">
+<nav class="navbar navbar-static-top bg">
     <div class="container">
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
         </div>
         <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-              <md-button ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }} </md-button>
+              <md-button class='nav-size'ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }} </md-button>
             </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
@@ -17,4 +16,3 @@
         </div>
     </div>
 </nav>
-</md-content>   

@@ -21,14 +21,14 @@ app.config(function ($mdThemingProvider) {
      '200', '300', 'A100'],
     'contrastLightColors': undefined    // could also specify this if default was 'dark'
   });
+
   $mdThemingProvider.theme('default')
     .primaryPalette('amazingPaletteName',{
+    	'default':'400',
     	'hue-1': '600',
     	'hue-2': '800',
     	'hue-3' :'A200'
     })
-    .backgroundPalette('amazingPaletteName',{
-		'default': '900'  	
-    })
+
 
 });
