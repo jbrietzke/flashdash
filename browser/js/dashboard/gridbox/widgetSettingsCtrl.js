@@ -1,6 +1,7 @@
   app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory', '$interval',
     function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory, $interval) {
       console.log('this is a widget', widget);
+
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
@@ -71,14 +72,32 @@
         }
         $modalInstance.close(widget);
 
-        $interval(function(){
-          $scope.setKeys();
-          widget.chart.api.refresh();
 
-        },2000)
+        $timeout(function(){
+          widget.chart.api.refresh();
+        },0)
 
         //update new chart
-      };
+        };
+
+
+        $scope.emitActive = function(widget){
+          console.log('emitting');
+          $scope.$emit('makingActive');
+        };
+
+      $scope.$on('makingActive', function(){
+          console.log('listening');
+          if (widget.refreshInterval !== 0) {
+            $interval(function(){
+              console.log('You are made', widget.name);
+              $scope.setKeys();
+            }, 2000)
+          }
+      });
+
+
+
 
     }
   ])

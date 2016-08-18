@@ -37,7 +37,9 @@
               <div class="box-header">
                   <h3>{{ widget.name }}</h3>
                   <div class="box-header-btns pull-right">
+
                      <a ng-click='openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
+                     <a ng-click='showMe(widget)'><i class="glyphicon glyphicon-pencil"></i></a>
                      <a ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
                   </div>
               </div>
@@ -45,7 +47,7 @@
                 <nvd3 options="widget.chart.options"
                       data="widget.chart.data"
                       api="widget.chart.api"
-                      config="config"
+                      config="{refreshDataOnly : true}"
                       events="events"></nvd3>
               </div>
           </div>
