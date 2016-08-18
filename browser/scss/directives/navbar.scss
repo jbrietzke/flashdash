@@ -1,14 +1,19 @@
+.bg{
+  background-color: white;
+}
+.nav-size{
+  font-size: 20px;
+}
 navbar {
 
   display: block;
   background: white;
-  border-bottom: 1px solid black;
+  height: 55px;
   box-shadow: 1px 1px 14px -3px black;
 
   .container {
     width: 91%;
-    max-width: 1340px;
-    padding-top: 20px;
+    background-color: white;
   }
 
   fullstack-logo {

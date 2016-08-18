@@ -8,6 +8,7 @@ app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '
     $scope.dashboard = null;
 
     $scope.update = function() {
+        console.log('update')
         if ($scope.selectedDb) {
             $scope.dashName = $scope.selectedDb.name;
             $scope.dashDesc = $scope.selectedDb.description;
