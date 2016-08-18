@@ -74,6 +74,7 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
       $scope.createCharts = function(){
         DashboardFactory.getCharts($scope.dashboard.id)
       .then(function(res){
+        console.log('These are the charts we are getting', res);
     $scope.charts = res
     })
   }

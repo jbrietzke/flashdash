@@ -73,9 +73,9 @@
 
         $interval(function(){
           $scope.setKeys();
-        widget.chart.api.refresh();
+          widget.chart.api.refresh();
 
-        },5000)
+        },2000)
 
         //update new chart
       };

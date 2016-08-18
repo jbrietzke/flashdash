@@ -7,6 +7,14 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
         }
         return $http.get(link)
         .then(getData)
+        .then(function(data){
+        let x = findDataToGraph(data);
+        if (x) {
+            return x;
+        }else{
+            return [data]
+        }
+        })
         .catch(res => [])
     }
 
@@ -29,7 +37,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
                             key: "this works",
                             color: '#ff7f0e'
                         }],
-                        // api: {}
+                        api: {}
                     }
                 })
             })
@@ -64,8 +72,25 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, $log){
 
     obj.getCharts = function(dashboardId){
     return $http.get('/api/dashboards/' + dashboardId + '/charts')
-    .then(res => res.data)
+    .then(function(res){
+        console.log('this is in DashBoardFactory getCharts', res.data);
+        return res.data
+    })
     }
 
     return obj;
+
+    function findDataToGraph(obj){
+    if(Array.isArray(obj)){
+      return obj;
+    }else if(typeof(obj) === 'object'){
+      var x;
+      for(var key in obj){
+       x = findDataToGraph(obj[key]);
+       if(x){
+        return x;
+       }
+      }
+    }
+  }
 });
