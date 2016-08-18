@@ -69,7 +69,7 @@
 
         $timeout(function(){
           widget.chart.api.refresh();
-        },0)
+        },400)
 
         //update new chart
       };
