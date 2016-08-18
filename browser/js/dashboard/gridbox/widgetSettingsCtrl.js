@@ -1,5 +1,5 @@
-  app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$uibModalInstance', 'widget', 'GeneratorFactory',
-    function($scope, DashboardFactory, $timeout, $rootScope, $uibModalInstance, widget, GeneratorFactory) {
+  app.controller('WidgetSettingsCtrl', ['validGraph', '$scope', 'DashboardFactory', '$timeout', '$rootScope', '$uibModalInstance', 'widget', 'GeneratorFactory',
+    function(validGraph, $scope, DashboardFactory, $timeout, $rootScope, $uibModalInstance, widget, GeneratorFactory) {
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
@@ -25,6 +25,7 @@
       DashboardFactory.getDataSource($scope.form.dataSource)
       .then(function(data){
         let realData = findDataToGraph(data);
+        validGraph.getKeysAndTypes(realData)
         $scope.dataKeys = Object.keys(realData[0]);
         dataInNVD3Format = [{
           values:realData,
@@ -35,7 +36,7 @@
       })
 
      }
-
+//this should be in a factory
   function findDataToGraph(obj){
     if(Array.isArray(obj)){
       return obj;
