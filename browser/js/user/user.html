@@ -9,7 +9,7 @@
       <button class="btn btn-success" ng-click='editingDashboard()'>Edit</button>
       <tr ng-repeat='dashboard in allDashBoards'>
         <td>
-        	<span ng-hide='dashboardEditingMode'>{{dashboard.name}}</span>
+        	<a ui-sref="dashboard({dashToLoad: {name: dashboard.name}})" ng-hide='dashboardEditingMode'>{{dashboard.name}}</a>
         	<input ng-hide='!dashboardEditingMode' type="text" ng-model='dashboard.name'
         	placeholder='{{dashboard.name}}'>
         	<button ng-hide='!dashboardEditingMode' ng-click='updateDashboard(id, dashboard.id, dashboard)'>Save Changes</button>
