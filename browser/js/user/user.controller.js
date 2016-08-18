@@ -1,4 +1,4 @@
-app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
+app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, AuthService) {
 
   AuthService.getLoggedInUser()
   .then(function(res){
@@ -19,11 +19,12 @@ app.controller('userCtrl', function ($scope, userFactory, $state, AuthService) {
 		 return userFactory.deleteUser(id);
 	}
 	$scope.addDashboard = function(id, content){
-    	return userFactory.addDashboard(id, content)
-    	 .then(function(){
-    		$state.reload()
-    	})
-  	}
+    $uibModal.open({
+      scope: $scope,
+      templateUrl: '/js/dashboard/newDashboard/newDashboard.html',
+      controller: 'newDashboardCtrl'
+    })
+  }
 
 	$scope.updateDashboard = function(id, dashId, content){
   		return userFactory.updateDashboard(id, dashId, content)

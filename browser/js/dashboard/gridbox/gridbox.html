@@ -18,7 +18,7 @@
           ng-class='{ editlocked: !editable, editunlocked: editable}'
           class='btn button-space sml-right-space'
           ng-disabled='dashboardList.length < 1'
-          ng-click='editable = !editable'>
+          ng-click='toggleEditable()'>
           Editing {{editable ? "enabled" : "disabled"}}</button>
       <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=saveLayout()> Save! </button>
       <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=addWidget()>Add Widget</button>
@@ -31,8 +31,8 @@
               <div class="box-header">
                   <h3>{{ widget.name }}</h3>
                   <div class="box-header-btns pull-right">
-                     <a ng-click='openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
-                     <a ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
+                     <a ng-click='editable && openSettings(widget)'><i class="glyphicon glyphicon-cog"></i></a>
+                     <a ng-click="editable && remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
                   </div>
               </div>
               <div class="box-content">

@@ -1,17 +1,18 @@
 
-app.controller('dashboardCtrl', ['$scope', 'DashboardFactory', '$rootScope', 'dashList',
-    function($scope, DashboardFactory, $rootScope, dashList) {
+app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '$rootScope', 'dashList',
+    function($stateParams, $scope, DashboardFactory, $rootScope, dashList) {
 
     $scope.editable = false;
-    $scope.dashName = "You have no dashboards";
-    $scope.dashDesc = "Please create a dashboard";
+    $scope.dashName = $stateParams.name || "You have no dashboards";
+    $scope.dashDesc = $stateParams.description || "Please create a dashboard";
     $scope.dashboard = null;
 
     $scope.update = function() {
         if ($scope.selectedDb) {
             $scope.dashName = $scope.selectedDb.name;
             $scope.dashDesc = $scope.selectedDb.description;
-            console.log("The data is being udpated!  Dashboard is", $scope.selectedDb)
+            $scope.editable = false;
+
             DashboardFactory.getDashboard($scope.selectedDb.id)
             .then(db => {
                 $scope.dashboard = db;
@@ -23,8 +24,13 @@ app.controller('dashboardCtrl', ['$scope', 'DashboardFactory', '$rootScope', 'da
     // The resolve fetched a list of dashboards for this user.  Note that this
     // does not entail the graphs, which must be fetched later.
     $scope.dashboardList = dashList;
-    if (dashList.length > 0)
-        $scope.selectedDb = dashList[0];
+    if (dashList.length > 0){
+        let indexOfDashToLoad = 0;
+        if($stateParams.dashToLoad){
+            indexOfDashToLoad = DashboardFactory.findIndexToLoad(dashList, $stateParams.dashToLoad.name)
+        }
+        $scope.selectedDb = dashList[indexOfDashToLoad];
+    }
     $scope.update();
 
 }]);
