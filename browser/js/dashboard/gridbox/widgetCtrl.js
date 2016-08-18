@@ -32,6 +32,20 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope',
       })
   };
 
+  $scope.showMe2 = function(widget){
+    console.log(widget);
+    $modal.open({
+        scope: $scope,
+        templateUrl: '/js/dashboard/gridbox/widgetAllActive.html',
+        controller: 'WidgetSettingsCtrl',
+        resolve: {
+          widget: function() {
+            return widget;
+          }
+        }
+      })
+  };
+
 
 }
   ])

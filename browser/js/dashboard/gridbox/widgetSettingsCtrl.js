@@ -92,10 +92,30 @@
             $interval(function(){
               console.log('You are made', widget.name);
               $scope.setKeys();
-            }, 2000)
+            }, widget.refreshInterval)
           }
       });
 
+      $scope.emitAllActive = function(){
+        console.log('emittingAll');
+        $scope.$emit('makingAllActive')
+      };
+
+      $scope.$on('makingAllActive', function(){
+        DashboardFactory.getCharts(1)
+        .then(function(dashes){
+          dashes.forEach(function(e){
+            if (e.refreshInterval > 0) {
+              setTimeout(function(){
+                $interval(function(){
+                  console.log('You are made', widget.name);
+                  $scope.setKeys();
+                }, 2000)
+              }, 3000)
+            }
+          })
+        })
+      })
 
 
 
