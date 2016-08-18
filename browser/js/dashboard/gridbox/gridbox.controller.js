@@ -107,19 +107,16 @@ $scope.liveCharts = [];
   }
 
   $scope.updateAllData = function(dbId){
-    $rootScope.$broadcast('updateYourself');
-    console.log('updatingData');
-    DashboardFactory.getCharts(dbId)
+    var x = DashboardFactory.getCharts(dbId)
     .then(function(allCharts){
-      allCharts.forEach(function(e){
-        console.log('this is E', e);
-        return WidgetSettingsFactory.newSetKeys(e.dataSource)
-        .then(function(res){
-          console.log('holder');
-        })
+      return allCharts.map(function(e){
+        return e.id;
       })
     })
+    $rootScope.$broadcast('updateYourself', x);
   };
+
+
 
   }
 

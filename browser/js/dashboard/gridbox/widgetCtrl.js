@@ -47,29 +47,19 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', '
   };
 
   $scope.updateData = function(widget){
-    console.log('updatingData');
+    console.log('updatingData', widget);
     if (widget.refreshInterval > 0) {
         $interval(function(){
           return WidgetSettingsFactory.newSetKeys(widget.dataSource)
           .then(function(res){
             widget.chart.data = res[0]
           })
-        }, widget.refreshInterval);
+        }, widget.refreshInterval + 4000);
       }
-
   };
 
-  $scope.$on('updateYourself', function(){
-    console.log('I will update');
-    DashboardFactory.getCharts(1)
-    .then(function(charts){
-      charts.forEach(function(e){
-        return WidgetSettingsFactory.newSetKeys(e.dataSource)
-        .then(function(res){
-          e.chart.data = res[0];
-        })
-      })
-    })
+  $scope.$on('updateYourself', function(x){
+    console.log('I hear you', x);
   });
 
 
