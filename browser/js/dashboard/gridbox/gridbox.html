@@ -2,6 +2,10 @@
   <div class="row">
     <div class="col-md-4">
       <select ng-options="dashboard as dashboard.name for dashboard in dashboardList " ng-model="selectedDb" ng-change="update()" class="db-drop-menu big-right-space"></select>
+  <md-autocomplete  md-selected-item="selectedDb.name"  md-search-text='searchText' md-items-text='dashboard.name' md-items="dashboard in dashboardList">
+    <md-item-template>{{dashboard.name}}</md-item-template>
+  </md-autocomplete>
+
      </div>
     <div class="col-md-8">
         <h4>{{ dashDesc }}</h4>
@@ -14,16 +18,18 @@
       <label>
           <h3>Layout Controls: </h3>
       </label>
-      <button
+      <md-button
           ng-class='{ editlocked: !editable, editunlocked: editable}'
           class='btn button-space sml-right-space'
           ng-disabled='dashboardList.length < 1'
           ng-click='toggleEditable()'>
-          Editing {{editable ? "enabled" : "disabled"}}</button>
-      <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=saveLayout()> Save! </button>
-      <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=addWidget()>Add Widget</button>
-      <button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="button-space" ng-click=clear()>Clear All Widgets</button>
+          Editing {{editable ? "enabled" : "disabled"}}</md-button>
+
+      <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised" ng-click=saveLayout()> Save! </md-button>
+      <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised" ng-click=addWidget()>Add Widget</md-button>
+      <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised" ng-click=clear()>Clear All Widgets</md-button>
     </div>
+
       <div gridster="gridsterOptions" class='ng-scope gridster-desktop gridster-loaded'>
       <ul class="with-3d-shadow with-transitions">
         <li gridster-item="widget" ng-repeat="widget in dashboard.charts">
