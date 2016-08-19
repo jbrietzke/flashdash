@@ -1,4 +1,4 @@
-app.factory('DashboardFactory', function($http, $q, GeneratorFactory, WidgetSettingsFactory){
+app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     var obj = {};
     let getData = (res => res.data);
     obj.getDataSource = function(link){
@@ -8,7 +8,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, WidgetSett
         return $http.get(link)
         .then(getData)
         .then(function(data){
-            let x = WidgetSettingsFactory.findDataToGraph(data);
+            let x = obj.findDataToGraph(data);
             if (x) {
                 return x;
             }else{
@@ -75,12 +75,26 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory, WidgetSett
     }
 
     obj.getCharts = function(dashboardId){
-    return $http.get('/api/dashboards/' + dashboardId + '/charts')
-    .then(function(res){
-        console.log('this is in DashBoardFactory getCharts', res.data);
-        return res.data
-    })
+        return $http.get('/api/dashboards/' + dashboardId + '/charts')
+        .then(function(res){
+            console.log('this is in DashBoardFactory getCharts', res.data);
+            return res.data
+        })
     }
+
+    obj.findDataToGraph = function findDataToGraph(obj){
+    if(Array.isArray(obj)){
+      return obj;
+    }else if(typeof(obj) === 'object'){
+      var x;
+      for(var key in obj){
+       x = findDataToGraph(obj[key]);
+       if(x){
+        return x;
+       }
+      }
+    }
+  }
 
     return obj;
 });
