@@ -1,0 +1,15 @@
+
+.blank_row
+{
+    height: 10px !important; /* Overwrite any previous rules */
+    background-color: #FFFFFF;
+}
+
+.btn-destroy {
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.user-page-table tr {
+  height: 32px;
+}

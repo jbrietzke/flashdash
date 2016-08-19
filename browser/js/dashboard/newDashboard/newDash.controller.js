@@ -1,19 +1,29 @@
-app.controller('newDashboardCtrl', function (userFactory,$state,$uibModalInstance, $scope) {
+app.controller('newDashboardCtrl', function (userFactory,$state,$uibModalInstance, $scope, content) {
 	
-	// $scope.form = {
-	// 	name: dashbaord.name, 
-	// 	description: dashboard.description
-	// }
+	// If passed an existing dashboard, set up to modify it
+	if(content) {
+		$scope.form={name: content.name, description: content.description};
+		$scope.new = false;
+	} else {
+		$scope.new = true;
+	}
 
 	$scope.submit = function () {
-	 	// angular.extend(dashboard, $scope.form)
-		return userFactory.addDashboard($scope.id, $scope.form)
-	    .then(function(){
-	    	$state.go('dashboard', {dashToLoad: $scope.form})
-	    })
+		if(!content) {
+			return userFactory.addDashboard($scope.id, $scope.form)
+			.then(function(){
+	    		$state.go('dashboard', {dashToLoad: $scope.form})
+			})
+		} else {
+			userFactory.updateDashboard($scope.id, content.id, $scope.form)
+			.then(function() {
+				$state.go('user', {}, {reload: true})
+			})
+		}
+
 	}
+
 	$scope.dismiss = function() {
-		console.log('hitting this')
         $uibModalInstance.dismiss();
       };
 })
