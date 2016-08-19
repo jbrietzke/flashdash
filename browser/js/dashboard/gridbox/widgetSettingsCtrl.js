@@ -54,7 +54,7 @@ app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', 
           $interval(function(){
             $scope.setKeys();
           }, $scope.form.refreshInterval);
-        },0)
+        },400)
 
         };
     }])
