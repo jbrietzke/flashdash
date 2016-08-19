@@ -1,5 +1,5 @@
 //moment is a global variable
-app.factory('validGraph', function () {
+app.factory('validGraphFactory', function () {
 	return {
 		getKeysAndTypes : function (arrayOfData) {
 			let keysAndTypes = {};
@@ -7,7 +7,7 @@ app.factory('validGraph', function () {
 			for(let key in dataObj) {
 				if(typeof dataObj[key]!= 'string') {
 					keysAndTypes[key] = typeof dataObj[key]
-				} else if(moment(dataObj[key]).isValid()) {
+				} else if(moment(dataObj[key], moment.ISO_8601).isValid()) {
 					keysAndTypes[key] = 'date'
 				} else if (!isNaN(Number(dataObj[key]))) {
 					keysAndTypes[key] = 'number'
@@ -62,7 +62,7 @@ app.factory('validGraph', function () {
 						.push('barChart')
 				}
 			}
-		
+	
 		// POST MVP:
 		// IF DATA HAS OPEN, HIGH, LOW, CLOSE - CANDLESTICK CHART - POST MVP
 		// IF MULTIPLE Y SOURCES AND X IS A NUMBER OR DATE - MULTILINE CHART OR STACKED AREA CHART
