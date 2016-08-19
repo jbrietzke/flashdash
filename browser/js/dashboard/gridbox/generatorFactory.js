@@ -51,7 +51,7 @@ function scatterChartOptions(xparam, yparam){
       showDistX: true,
       showDistY: true,
       duration: 100,
-      x: function(d, i){ return i; },   // HACK to remove!
+      x: function(d,i){ return i; },   // HACK to remove!
       y: function(d){ return d[yparam]; },
       xAxis: {
         axisLabel: 'X Axis',
@@ -78,11 +78,11 @@ function scatterChartOptions(xparam, yparam){
                 y: function(d){ return d[yparam]; },
                 useInteractiveGuideline: true,
                 xAxis: {
-                    axisLabel: 'Time (ms)',
+                    axisLabel: 'Index',
                     axisLabelDistance: -5
                 },
                 yAxis: {
-                    axisLabel: 'Voltage (v)',
+                    axisLabel: yparam,
                     tickFormat: function(d){
                         return d3.format('.02f')(d);
                     },
