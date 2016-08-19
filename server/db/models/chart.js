@@ -6,10 +6,7 @@ var db = require('../_db');
 module.exports = db.define('chart', {
 	name: Sequelize.STRING,
 	dataSource: {
-		type: Sequelize.STRING,
-		validate: {
-			isUrl: true
-		}
+		type: Sequelize.STRING
 	},
 	refreshInterval: {
 		type: Sequelize.INTEGER,
