@@ -4,7 +4,7 @@ app.factory('WidgetSettingsFactory', function($interval, DashboardFactory){
   factory.newSetKeys = function(dataSource){
     return DashboardFactory.getDataSource(dataSource)
       .then(function(data){
-        var realData = findDataToGraph(data);
+        var realData = factory.findDataToGraph(data);
         if (!realData) {
           realData = [data];
         }
@@ -17,7 +17,7 @@ app.factory('WidgetSettingsFactory', function($interval, DashboardFactory){
       })
   }
 
-  function findDataToGraph(obj){
+  factory.findDataToGraph = function(obj){
     if(Array.isArray(obj)){
       return obj;
     }else if(typeof(obj) === 'object'){

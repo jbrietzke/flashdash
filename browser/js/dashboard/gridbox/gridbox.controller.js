@@ -7,11 +7,11 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetS
         // mobileBreakPoint: 1000,
         // mobileModeEnabled: true,
         draggable: {
-          enabled: true,
+          enabled: $scope.editable,
           handle: 'h3'
         },
         resizable: {
-          enabled: true,
+          enabled: $scope.editable,
           handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
 
           // optional callback fired when resize is started
@@ -30,7 +30,6 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetS
           }
         }
       };
-     // $scope.dashboard = dashboard;
 
       // widget events
       $scope.events = {
@@ -68,7 +67,12 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetS
 
       $scope.saveLayout = function () {
         DashboardFactory.saveLayout($scope.dashboard.id, $scope.dashboard.charts)
-        .then(function (data) {
-        })
       }
-  }]);
+
+      $scope.toggleEditable = function(forced) {
+        $scope.editable = (typeof forced === "undefined") ? ! $scope.editable : forced;
+        $scope.gridsterOptions.draggable.enabled = $scope.editable;
+        $scope.gridsterOptions.resizable.enabled = $scope.editable;
+       }
+    }
+]);

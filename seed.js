@@ -35,7 +35,12 @@ var seed = function () {
         {
             email: 'obama@gmail.com',
             password: 'potus'
+        },
+        {
+            email: 'noone@nowhere.com',
+            password: 'nothing'
         }
+
     ];
 
     var creatingUsers = users.map(function (userObj) {

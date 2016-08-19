@@ -1,18 +1,11 @@
 'use strict';
 var router = require('express').Router();
+const AuthFactory = require("../../configure/authentication/auth-factory")
 
 module.exports = router;
 
-var ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.status(401).end();
-    }
-};
-
 // Authenticate all requests down this route.  Remove to open the route.
-// router.get('/', ensureAuthenticated, function (req, res, next) {
+// router.get('/', AuthFactory.ensureAuthenticated, function (req, res, next) {
 //  next();
 // })
 

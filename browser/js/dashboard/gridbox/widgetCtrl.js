@@ -1,22 +1,24 @@
-app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', 'WidgetSettingsFactory', 'DashboardFactory', '$interval',
-	function($scope, $modal, $controller, $rootScope, WidgetSettingsFactory, DashboardFactory, $interval) {
 
-	  $scope.remove = function(widget) {
-	    $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
-	  };
+app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', 'WidgetSettingsFactory', 'DashboardFactory', '$interval', '$uibModal',
+	function($scope, $modal, $controller, $rootScope, WidgetSettingsFactory, DashboardFactory, $interval, $uibModal) {
 
-	  $scope.openSettings = function(widget) {
-	    $modal.open({
-	      scope: $scope,
-	      templateUrl: '/js/dashboard/gridbox/widgetSettings.html',
-	      controller: 'WidgetSettingsCtrl',
-	      resolve: {
-	        widget: function() {
-	          return widget;
-	        }
-	      }
-	    })
-	  };
+
+      $scope.remove = function(widget) {
+        $scope.dashboard.charts.splice($scope.dashboard.charts.indexOf(widget), 1);
+      };
+
+      $scope.openSettings = function(widget) {
+        $uibModal.open({
+          scope: $scope,
+          templateUrl: '/js/dashboard/gridbox/widgetSettings.html',
+          controller: 'WidgetSettingsCtrl',
+          resolve: {
+            widget: function() {
+              return widget;
+            }
+          }
+        })
+      };
 
   $scope.updateData = function(widget){
     if (widget.refreshInterval > 0) {
