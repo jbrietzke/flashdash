@@ -23,14 +23,20 @@
 
 
     let dataInNVD3Format;
-     $scope.setKeys = function(dataSource){
-        return WidgetSettingsFactory.newSetKeys(dataSource)
-        .then(function(res){
-          widget.chart.data = res[0];
-          $scope.dataKeys = res[1];
-        })
+     $scope.setKeys = function(){
+      DashboardFactory.getDataSource($scope.form.dataSource)
+      .then(function(data){
+        let realData = findDataToGraph(data);
+        $scope.dataKeys = Object.keys(realData[0]);
+        dataInNVD3Format = [{
+          values:realData,
+          key: "this works",
+          color: '#ff7f0e'
+        }];
+        widget.chart.data = dataInNVD3Format;
+      })
+
      }
-     $scope.setKeys($scope.form.dataSource);
 
   function findDataToGraph(obj){
     if(Array.isArray(obj)){
@@ -70,45 +76,4 @@
 
         //update new chart
         };
-
-
-        $scope.emitActive = function(widget){
-          console.log('emitting');
-          $scope.$emit('makingActive');
-        };
-
-      $scope.$on('makingActive', function(){
-          console.log('listening');
-          if (widget.refreshInterval !== 0) {
-            $interval(function(){
-              console.log('You are made', widget.name);
-              $scope.setKeys();
-            }, widget.refreshInterval)
-          }
-      });
-
-      $scope.emitAllActive = function(){
-        console.log('emittingAll');
-        $scope.$emit('makingAllActive')
-      };
-
-      $scope.$on('makingAllActive', function(){
-        DashboardFactory.getCharts(1)
-        .then(function(dashes){
-          dashes.forEach(function(e){
-            if (e.refreshInterval > 0) {
-              setTimeout(function(){
-                $interval(function(){
-                  console.log('You are made', widget.name);
-                  $scope.setKeys();
-                }, 2000)
-              }, 3000)
-            }
-          })
-        })
-      })
-
-
-
-    }
-  ])
+    }])

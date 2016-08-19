@@ -18,36 +18,7 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', '
 	    })
 	  };
 
-  $scope.showMe = function(widget){
-    console.log(widget);
-    $modal.open({
-        scope: $scope,
-        templateUrl: '/js/dashboard/gridbox/widgetActive.html',
-        controller: 'WidgetSettingsCtrl',
-        resolve: {
-          widget: function() {
-            return widget;
-          }
-        }
-      })
-  };
-
-  $scope.showMe2 = function(widget){
-    console.log(widget);
-    $modal.open({
-        scope: $scope,
-        templateUrl: '/js/dashboard/gridbox/widgetAllActive.html',
-        controller: 'WidgetSettingsCtrl',
-        resolve: {
-          widget: function() {
-            return widget;
-          }
-        }
-      })
-  };
-
   $scope.updateData = function(widget){
-    console.log('updatingData', widget);
     if (widget.refreshInterval > 0) {
         $interval(function(){
           return WidgetSettingsFactory.newSetKeys(widget.dataSource)
@@ -57,11 +28,5 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', '
         }, widget.refreshInterval + 4000);
       }
   };
-
-  $scope.$on('updateYourself', function(x){
-    console.log('I hear you', x);
-  });
-
-
 }
   ])
