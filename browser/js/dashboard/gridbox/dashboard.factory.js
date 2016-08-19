@@ -9,11 +9,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         .then(getData)
         .then(function(data){
             let x = obj.findDataToGraph(data);
-            if (x) {
-                return x;
-            }else{
-                return [data]
-            }
+            return x;
         })
         .catch(res => [])
     }
@@ -85,8 +81,9 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
             return x;
            }
           }
+          return [obj];
         }
-    }
+  }
 
     return obj;
 });

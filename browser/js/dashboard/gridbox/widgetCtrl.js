@@ -23,7 +23,7 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', '
   $scope.updateData = function(widget){
     if (widget.refreshInterval > 0) {
         $interval(function(){
-          return WidgetSettingsFactory.newSetKeys(widget.dataSource)
+          WidgetSettingsFactory.newSetKeys(widget.dataSource)
           .then(function(res){
             widget.chart.data = res[0]
           })
