@@ -1,7 +1,5 @@
 app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory', '$interval', 'WidgetSettingsFactory', '$uibModalInstance',
     function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory, $interval,WidgetSettingsFactory, $uibModalInstance) {
-      console.log('this is a widget', widget);
-
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
@@ -19,7 +17,9 @@ app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', 
         dataSource: widget.dataSource,
         yparam: widget.yparam,
         xparam: widget.xparam,
+        refreshInterval : widget.refreshInterval || 3000,
       };
+      //3000 is a placeholder default value for testing, should switch to higher value when deploying. Also we need to put refreshInterval in the form logic
 
 
     let dataInNVD3Format;
@@ -51,7 +51,12 @@ app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', 
 
         $timeout(function(){
           widget.chart.api.refresh();
-        },400)
+          $interval(function(){
+            $scope.setKeys();
+          }, $scope.form.refreshInterval);
+        },0)
+
+
 
         //update new chart
         };
