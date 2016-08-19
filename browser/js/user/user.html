@@ -1,34 +1,38 @@
 <div>
   <div class="header">
-    <h1>Welcome {{user.firstName}} to your account page</h1>
+    <h1>Welcome, {{user.firstName}}, to your account page.</h1>
   </div>
   <div class="container">
   <div class='row'>
-    <table class='col-md-4'>
-      <th>Here are your current dashboard</th>
-      <button class="btn btn-success" ng-click='editingDashboard()'>Edit</button>
-      <tr ng-repeat='dashboard in allDashBoards'>
+    <table class='col-md-4 user-page-table'>
+      <th>Here are your current dashboards</th>
+      <tr class="blank_row"></tr>
+       <tr ng-repeat='dashboard in allDashBoards'>
         <td>
-        	<a ui-sref="dashboard({dashToLoad: {name: dashboard.name}})" ng-hide='dashboardEditingMode'>{{dashboard.name}}</a>
-        	<input ng-hide='!dashboardEditingMode' type="text" ng-model='dashboard.name'
-        	placeholder='{{dashboard.name}}'>
-        	<button ng-hide='!dashboardEditingMode' ng-click='updateDashboard(id, dashboard.id, dashboard)'>Save Changes</button>
+
+          <a ui-sref="dashboard({dashToLoad: {name: dashboard.name}})" >{{dashboard.name}}</a>
+         
         </td>
-        <td><button class="btn btn-danger" ng-click='deleteDashboard(id, dashboard.id)'>Delete</button></td>
+        <td>
+        <button class="btn btn-xs" ng-click='modDashboard(id, dashboard)'>Edit</button>
+        <button class="btn btn-danger btn-xs btn-destroy" ng-click='deleteDashboard(id, dashboard.id)'><span class="glyphicon glyphicon-remove"></span></button></td>
       </tr>
+      <tr class="blank_row"></tr>
       <tr>
-        <td><button class="btn btn-primary" ng-click='addDashboard(id, content)'>Create New Dashboard</button></td>
+        <td>
+            <button class="btn btn-primary" ng-click='modDashboard(id)'>Create New Dashboard</button>
+          </td>
+        </tr>
       </tr>
 
     </table>
 
+    <div class="col-md-1" />
 
-
-
-
-    <table class="col-md-4">
+    <table class="col-md-4 user-page-table">
       <th>Your Account Information</th>
-      <button ng-click='toggleEditingMode()'>Allow Editing</button>
+      <button ng-click='toggleUserEditingMode()'>{{ userEditingMode ? "Lock" : "Edit"}} user info</button>
+      <tr class="blank_row"></tr>
       <tr>
           <td>First name: <input ng-hide='!userEditingMode' ng-model='user.firstName' type="text" placeholder="{{user.firstName}}"><span ng-hide='userEditingMode'>{{user.firstName}}</span></td>
       </tr>
@@ -38,6 +42,7 @@
       <tr>
         <td>Email address: <input ng-hide='!userEditingMode' ng-model='user.email' type="text" placeholder="{{user.email}}"><span ng-hide='userEditingMode'>{{user.email}}</span></td>
       </tr>
+      <tr class="blank_row"></tr>
       <tr>
         <td><button ng-hide='!userEditingMode' ng-click='update(id, user)'>Update Info</button></td>
       </tr>
@@ -49,6 +54,8 @@
  </div>
 
 
+   <div class='hundred'>
+  </div>
 
 
 

@@ -1,36 +1,6 @@
 // angular.module('plunker.services', [])
+/* global d3 */
 app.factory('GeneratorFactory', function() {
-  return {
-    lineChart: {
-      options: lineChartOptions,
-      data: lineChartData
-    },
-    discreteBarChart: {
-      options: discreteBarChartOptions,
-      data: discreteBarChartData
-    },
-    pieChart: {
-      options: pieChartOptions,
-      data: pieChartData
-    },
-    candlestickBarChart: {
-      options: candlestickBarChartOptions,
-      data: candlestickBarChartData
-    },
-    boxPlotChart : {
-      options : boxPlotChartOptions,
-      data : boxPlotChartData
-    },
-    stackedAreaChart : {
-      options: stackedAreaChartOptions,
-      data : stackedAreaChartData
-    },
-    scatterChart: {
-      options : scatterChartOptions
-      // data : scatterChartData
-    }
-  };
-
 
   /**
    *  Data & Options Generators
@@ -92,36 +62,6 @@ function scatterChartOptions(xparam, yparam){
             }
         };
   }
-  function lineChartData() {
-    var sin = [],sin2 = [], cos = [];
-
-    //Data is represented as an array of {x,y} pairs.
-    for (var i = 0; i < 100; i++) {
-        sin.push({x: i, y: Math.sin(i/10)});
-        sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-        cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
-    }
-
-    //Line chart data should be sent as an array of series objects.
-    return [
-        {
-            values: sin,      //values - represents the array of {x,y} data points
-            key: 'Sine Wave', //key  - the name of the series.
-            color: '#ff7f0e'  //color - optional: choose your own line color.
-        },
-        {
-            values: cos,
-            key: 'Cosine Wave',
-            color: '#2ca02c'
-        },
-        {
-            values: sin2,
-            key: 'Another sine wave',
-            color: '#7777ff',
-            area: true      //area - set to true if you want this line to turn into a filled area chart.
-        }
-    ];
-  }
 
   function discreteBarChartOptions(xparam, yparam) {
     return {
@@ -150,47 +90,6 @@ function scatterChartOptions(xparam, yparam){
                 }
             }
         }
-  }
-  function discreteBarChartData(xparam, yparam) {
-    return [
-            {
-                key: "Cumulative Return",
-                values: [
-                    {
-                        "label" : "A" ,
-                        "value" : 29.765957771107
-                    } ,
-                    {
-                        "label" : "B" ,
-                        "value" : 0
-                    } ,
-                    {
-                        "label" : "C" ,
-                        "value" : 32.807804682612
-                    } ,
-                    {
-                        "label" : "D" ,
-                        "value" : 196.45946739256
-                    } ,
-                    {
-                        "label" : "E" ,
-                        "value" : 0.19434030906893
-                    } ,
-                    {
-                        "label" : "F" ,
-                        "value" : 98.079782601442
-                    } ,
-                    {
-                        "label" : "G" ,
-                        "value" : 13.925743130903
-                    } ,
-                    {
-                        "label" : "H" ,
-                        "value" : 5.1387322875705
-                    }
-                ]
-            }
-        ];
   }
 
   function pieChartOptions(xparam, yparam) {
@@ -408,39 +307,6 @@ function scatterChartOptions(xparam, yparam){
     }
   }
 
-
-  function lineChartData (){
-      var sin = [],sin2 = [],
-        cos = [];
-
-      //Data is represented as an array of {x,y} pairs.
-      for (var i = 0; i < 100; i++) {
-        sin.push({x: i, y: Math.sin(i/10)});
-        sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-        cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
-      }
-
-      //Line chart data should be sent as an array of series objects.
-      return [
-        {
-          values: sin,      //values - represents the array of {x,y} data points
-          key: 'Sine Wave', //key  - the name of the series.
-          color: '#ff7f0e'  //color - optional: choose your own line color.
-        },
-        {
-          values: cos,
-          key: 'Cosine Wave',
-          color: '#2ca02c'
-        },
-        {
-          values: sin2,
-          key: 'Another sine wave',
-          color: '#7777ff',
-          area: true      //area - set to true if you want this line to turn into a filled area chart.
-        }
-      ];
-    }
-
     function stackedAreaChartOptions(xparam, yparam){
       return {
         chart: {
@@ -527,79 +393,7 @@ function scatterChartOptions(xparam, yparam){
         }
       ];
     }
-    function discreteBarChartData (){
-      return [
-        {
-          key: "Cumulative Return",
-          values: [
-            {
-              "label" : "A" ,
-              "value" : -29.765957771107
-            } ,
-            {
-              "label" : "B" ,
-              "value" : 0
-            } ,
-            {
-              "label" : "C" ,
-              "value" : 32.807804682612
-            } ,
-            {
-              "label" : "D" ,
-              "value" : 196.45946739256
-            } ,
-            {
-              "label" : "E" ,
-              "value" : 0.19434030906893
-            } ,
-            {
-              "label" : "F" ,
-              "value" : -98.079782601442
-            } ,
-            {
-              "label" : "G" ,
-              "value" : -13.925743130903
-            } ,
-            {
-              "label" : "H" ,
-              "value" : -5.1387322875705
-            }
-          ]
-        }
-      ];
-    }
-    function pieChartData (){
-      return [
-        {
-          key: "One",
-          y: 5
-        },
-        {
-          key: "Two",
-          y: 2
-        },
-        {
-          key: "Three",
-          y: 9
-        },
-        {
-          key: "Four",
-          y: 7
-        },
-        {
-          key: "Five",
-          y: 4
-        },
-        {
-          key: "Six",
-          y: 3
-        },
-        {
-          key: "Seven",
-          y: .5
-        }
-      ];
-    }
+
     function boxPlotChartData (){
       return [
         {
@@ -659,5 +453,36 @@ function scatterChartOptions(xparam, yparam){
         }
       ];
     }
+  return {
+    lineChart: {
+      options: lineChartOptions,
+    },
+    discreteBarChart: {
+      options: discreteBarChartOptions,
+    },
+    pieChart: {
+      options: pieChartOptions,
+      data: pieChartData
+    },
+    candlestickBarChart: {
+      options: candlestickBarChartOptions,
+      data: candlestickBarChartData
+    },
+    boxPlotChart : {
+      options : boxPlotChartOptions,
+      data : boxPlotChartData
+    },
+    stackedAreaChart : {
+      options: stackedAreaChartOptions,
+      data : stackedAreaChartData
+    },
+    scatterChart: {
+      options : scatterChartOptions
+    },
+    cumulativeLineChart: {
+      options: cumulativeLineChartOptions,
+      data: cumulativeChartData
+    }
+  };
 });
 
