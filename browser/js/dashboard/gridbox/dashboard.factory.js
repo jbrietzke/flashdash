@@ -74,27 +74,19 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         .then(getData)
     }
 
-    obj.getCharts = function(dashboardId){
-        return $http.get('/api/dashboards/' + dashboardId + '/charts')
-        .then(function(res){
-            console.log('this is in DashBoardFactory getCharts', res.data);
-            return res.data
-        })
-    }
-
     obj.findDataToGraph = function findDataToGraph(obj){
-    if(Array.isArray(obj)){
-      return obj;
-    }else if(typeof(obj) === 'object'){
-      var x;
-      for(var key in obj){
-       x = findDataToGraph(obj[key]);
-       if(x){
-        return x;
-       }
-      }
+        if(Array.isArray(obj)){
+          return obj;
+        }else if(typeof(obj) === 'object'){
+          var x;
+          for(var key in obj){
+           x = findDataToGraph(obj[key]);
+           if(x){
+            return x;
+           }
+          }
+        }
     }
-  }
 
     return obj;
 });

@@ -56,8 +56,5 @@ app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', 
           }, $scope.form.refreshInterval);
         },0)
 
-
-
-        //update new chart
         };
     }])
