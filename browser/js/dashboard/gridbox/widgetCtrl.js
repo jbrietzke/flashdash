@@ -26,6 +26,7 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', '
             widget.chart.data = res[0]
           })
         }, widget.refreshInterval + 4000);
+        // 4000 is currently there for testing
       }
   };
 }
