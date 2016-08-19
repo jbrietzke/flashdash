@@ -24,33 +24,12 @@
 
     let dataInNVD3Format;
      $scope.setKeys = function(){
-      DashboardFactory.getDataSource($scope.form.dataSource)
-      .then(function(data){
-        let realData = findDataToGraph(data);
-        $scope.dataKeys = Object.keys(realData[0]);
-        dataInNVD3Format = [{
-          values:realData,
-          key: "this works",
-          color: '#ff7f0e'
-        }];
-        widget.chart.data = dataInNVD3Format;
-      })
-
-     }
-
-  function findDataToGraph(obj){
-    if(Array.isArray(obj)){
-      return obj;
-    }else if(typeof(obj) === 'object'){
-      var x;
-      for(var key in obj){
-       x = findDataToGraph(obj[key]);
-       if(x){
-        return x;
-       }
+        return WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
+        .then(function(res){
+          widget.chart.data = res[0];
+          $scope.dataKeys = res[1];
+        })
       }
-    }
-  }
 
       $scope.dismiss = function() {
         $modalInstance.dismiss();

@@ -4,7 +4,6 @@ app.factory('WidgetSettingsFactory', function($interval, DashboardFactory){
   factory.newSetKeys = function(dataSource){
     return DashboardFactory.getDataSource(dataSource)
       .then(function(data){
-        console.log('this is data', data);
         var realData = findDataToGraph(data);
         if (!realData) {
           realData = [data];
