@@ -8,9 +8,9 @@ app.controller('newDashboardCtrl', function (userFactory,$state,$uibModalInstanc
 	$scope.submit = function () {
 	 	// angular.extend(dashboard, $scope.form)
 		return userFactory.addDashboard($scope.id, $scope.form)
-	    .then(function(){
+	.then(function(){
 	    	$state.go('dashboard', {dashToLoad: $scope.form})
-	    })
+		})
 	}
 	$scope.dismiss = function() {
 		console.log('hitting this')
