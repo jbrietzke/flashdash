@@ -1,4 +1,4 @@
-app.controller('signupCtrl', function($scope, SignupFactory){
+app.controller('signupCtrl', function($scope, SignupFactory, AuthService, $state){
 
 
 
@@ -7,12 +7,15 @@ app.controller('signupCtrl', function($scope, SignupFactory){
 		 email: signup.email,
 		 password: signup.password,
 		 firstName: signup.firstName,
-		  lastName: signup.lastName	
+		  lastName: signup.lastName
 		}
+    SignupFactory.signup($scope.personInfo);
+    AuthService.login({email : $scope.personInfo.email, password : $scope.personInfo.password})
+    .then(function(){
+      $state.go('dashboard');
+    })
+    .catch(function(){
+      $scope.error = 'Email already registered';
+    })
 	}
-
-	$scope.test = function(){
-		console.log($scope.personInfo)
-	}
-
 })

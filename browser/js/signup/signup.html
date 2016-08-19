@@ -8,8 +8,8 @@
       <alert type="danger" ng-show="error">
           {{ error }}
       </alert>
-            
-      
+
+
       <div class="form-group">
           <label for="email">First Name</label>
           <input type="text" ng-model="signup.firstName" class="form-control" id="First Name" placeholder="Enter email">
@@ -27,9 +27,9 @@
           <label for="login-password">Sign up Password</label>
           <input type="password" ng-model="signup.password" class="form-control" id="login-password" placeholder="Password">
       </div>
-      <md-button  class='md-primary' type="submit" >Submit</md-button>
+      <md-button  ng-click='submit(signup)' class='md-primary' type="submit" >Submit</md-button>
       <md-button class='md-primary' >Google :(</md-button>
-      <md-button ng-click='test()' class='md-primary'>Check The Info</md-button>
+
 
 
       <div class='filler'>

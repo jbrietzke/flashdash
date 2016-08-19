@@ -3,7 +3,7 @@ app.factory('SignupFactory', function($http, $state) {
 
     factory.signup = function(data){
     	$http.post('/api/users/signup', data)
-    	.then(()=> $state.go('/myAccount') )
+      .then(signed => signed);
     }
 
 return factory;

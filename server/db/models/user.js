@@ -16,11 +16,13 @@ module.exports = db.define('user', {
     },
     firstName : {
         type : Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue : 'Kobe'
     },
     lastName : {
         type : Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue : 'Shaq'
     },
     defaultDashboard : {
         type : Sequelize.INTEGER
