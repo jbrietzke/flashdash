@@ -20,9 +20,11 @@ body {
   margin: 0 auto;
 }
 
+
 @import 'directives/main';
 @import 'dashboard/gridbox';
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
 @import 'panel/main';
+@import 'user/user';

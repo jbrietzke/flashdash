@@ -2,9 +2,8 @@
    <form name="_form" class="form-horizontal" ng-submit="submit()">
        <div class="modal-header">
            <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
-           <h3>So you wanna make a new Dashboard, do you?</h3>
+           <h3>{{ new? "Creating" : "Editing" }} a dashboard</h3>
        </div>
-
        <div class="modal-body">
            <div class="row">
                 <div class="col-lg-6 col-md-6">

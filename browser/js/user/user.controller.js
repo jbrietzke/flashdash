@@ -13,25 +13,22 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
   })
   
 	$scope.update = function(id, userData){
+    $scope.userEditingMode = false;
 		return userFactory.updateUser(id, userData);
 	}
 	$scope.delete = function(id){
 		 return userFactory.deleteUser(id);
 	}
-	$scope.addDashboard = function(id, content){
+	$scope.modDashboard = function(id, content){
     $uibModal.open({
       scope: $scope,
       templateUrl: '/js/dashboard/newDashboard/newDashboard.html',
-      controller: 'newDashboardCtrl'
+      controller: 'newDashboardCtrl',
+      resolve: {
+        content: function() {return content}
+      }
     })
   }
-
-	$scope.updateDashboard = function(id, dashId, content){
-  		return userFactory.updateDashboard(id, dashId, content)
-  		 .then(function(){
-    		$state.reload()
-    	})
-  	}
 
 	$scope.deleteDashboard = function(id, dashId){
     	return userFactory.deleteDashboard(id, dashId)
@@ -43,13 +40,15 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
   $scope.userEditingMode = false;
   $scope.dashboardEditingMode = false;
 
-  $scope.editingDashboard = function(){
+  $scope.toggleDashboardEditingMode = function(){
   	$scope.dashboardEditingMode = !$scope.dashboardEditingMode;
+    console.log("Toggling db to ", $scope.dashboardEditingMode)
   }
 
-  $scope.toggleEditingMode = function(){
+  $scope.toggleUserEditingMode = function(){
     $scope.userEditingMode = !$scope.userEditingMode;
-  }
+     console.log("Toggling us to ", $scope.userEditingMode)
+ }
 
 
 });
