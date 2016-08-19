@@ -21,6 +21,8 @@ app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '
         }
     };
 
+
+
     // The resolve fetched a list of dashboards for this user.  Note that this
     // does not entail the graphs, which must be fetched later.
     $scope.dashboardList = dashList;
@@ -32,5 +34,6 @@ app.controller('dashboardCtrl', ['$stateParams', '$scope', 'DashboardFactory', '
         $scope.selectedDb = dashList[indexOfDashToLoad];
     }
     $scope.update();
+
 
 }]);
