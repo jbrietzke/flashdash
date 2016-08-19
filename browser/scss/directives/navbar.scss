@@ -1,25 +1,69 @@
-.bg{
-  background-color: white;
-}
+
 .nav-size{
   font-size: 20px;
+}
+
+md-toast.md-success-toast-theme .md-toast-content {
+  background-color: green;
+}
+md-toast {
+  left: calc(50vw - 150px);
+}
+.dark-bg{
+  background-color: #01283f;
+}
+.borders{
+  border: 5px solid red;
+  padding:0;
+}
+.searchDash{
+  padding-top:20px;
+}
+.hundred{
+  height:416px;
+}
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+   height:70%;
+}
+.image img {
+    width: 100%;
+    height: 750px;
+}
+.about-text { 
+   position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%; 
+   padding:0 5px;
+}
+
+.filler{
+  background-color:white;
+  height:200px;
+}
+.darkerfiller{
+  background-color: #01283f ;
+  height:100%;
 }
 navbar {
 
   display: block;
-  background: white;
   height: 55px;
-  box-shadow: 1px 1px 14px -3px black;
+  border-bottom: 5px solid #01283f;
+  box-shadow: 1px 1px 14px -5px black;
+  flex-shrink: 10px;
 
   .container {
     width: 91%;
-    background-color: white;
   }
 
   fullstack-logo {
     margin-top: 5px;
     margin-right: 20px;
     width: 40px;
+    height: 40px;
   }
 
   a {
@@ -31,11 +75,11 @@ navbar {
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: darken(#f31214, 10%);
+      color: darken(#0fa4fc, 10%);
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: #0fa4fc,;
     }
     &:focus {
       background: none;
@@ -59,7 +103,7 @@ navbar {
       margin-right: 5px;
     }
     a {
-      color: #f30046;
+      color: #0fa4fc;
       cursor: pointer;
     }
   }

@@ -1,8 +1,8 @@
-app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
-    function($scope, DashboardFactory, $timeout) {
+app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', '$mdToast',
+    function($scope, DashboardFactory, $timeout, $mdToast) {
       $scope.gridsterOptions = {
-        margins: [20, 20],
-        columns: 16,
+        margins: [25, 25],
+        columns: 16,      
         // mobileBreakPoint: 1000,
         // mobileModeEnabled: true,
         draggable: {
@@ -73,5 +73,16 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout',
         $scope.gridsterOptions.draggable.enabled = $scope.editable;
         $scope.gridsterOptions.resizable.enabled = $scope.editable;
        }
-    }
+
+      $scope.showToast1 = function() {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Dashboard Saved!')                       
+            .hideDelay(2000)
+            .theme('success-toast')
+            .position('bottom')
+        );
+      };
+    },
+
   ]);

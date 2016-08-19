@@ -1,3 +1,6 @@
+.logos{
+    font-size: 25px;
+}
 #gridbox {
   fullstack-logo {
     padding-top: 30px;
@@ -15,7 +18,7 @@
     }
     .box {
         height: 100%;
-        /* border: 1px solid #ccc; */
+         border: 1px solid #ccc; 
         background-color: #fff;
     }
     .box-header {
@@ -36,7 +39,7 @@
     }
     .box-content {
         height: 100%;
-        padding: 0px;
+        padding: 5px;
     }
     .box-header-btns {
         top: 15px;
@@ -51,9 +54,8 @@
         margin-bottom: 0;
     }
     .gridster {
-        border: 1px solid #ccc;
     }
     .gridster-item {
-        border: 1px solid #ccc;
+        border: 1px solid black;
     }
 }
