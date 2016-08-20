@@ -1,4 +1,4 @@
-app.controller('newGraphCtrl', function ($scope, GeneratorFactory, validGraphFactory, DashboardFactory, $uibModalInstance) {
+app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, GeneratorFactory, validGraphFactory, DashboardFactory, $uibModalInstance) {
 	$scope.getKeysAndTypes = function () {
 		DashboardFactory.getDataSource($scope.form.dataSource)
 		.then(DashboardFactory.findDataToGraph)
@@ -21,14 +21,35 @@ app.controller('newGraphCtrl', function ($scope, GeneratorFactory, validGraphFac
     }
 
     $scope.build = function () {
-    	let numberOfCharts = $scope.dashboard.charts.push({
+    	let numberOfCharts = addWidgetToDashboard()
+    	WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
+    	.then(function (dataArr) {
+        	let widget = $scope.dashboard.charts[numberOfCharts -1]
+  			widget = customExtend(widget, $scope.form);
+        	widget.chart.api.updateWithData(dataArr[0])
+        	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name))
+		})
+
+		$uibModalInstance.dismiss();
+
+    }
+
+    function returnGraphOptions (type, xparam, yparam) {
+    	return GeneratorFactory[type].options(xparam, yparam)
+    }
+
+    function addWidgetToDashboard () {
+    	return $scope.dashboard.charts.push({
 	        name: "New Widget",
 	        sizeX: 4,
 	        sizeY: 4
-        });
-        let widget = $scope.dashboard.charts[numberOfCharts -1]
-        angular.extend(widget, $scope.form)
-        console.log(widget)
-        widget.chart.options = GeneratorFactory
+        })
+    }
+
+    function customExtend (widget, form) {
+    	angular.extend(widget, form);
+    	if(widget.xparam) widget.xparam = widget.xparam.name;
+    	if(widget.yparam) widget.yparam = widget.yparam.name;
+    	return widget; 
     }
 })
