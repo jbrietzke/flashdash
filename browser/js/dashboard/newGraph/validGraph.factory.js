@@ -41,25 +41,25 @@ app.factory('validGraphFactory', function () {
 			
 				// X IS STRING - BAR CHART OR PIE
 			
+						validGraphTypes.push('scatterChart')
+						validGraphTypes.push('barChart')
+						validGraphTypes.push('pieChart')
 					return validGraphTypes
-						.push('scatterChart')
-						.push('barChart')
-						.push('pieChart')
 				} else if (xtype === 'date') {
 			
 				// X IS DATE- LINE CHART OR BAR CHART
 			
+						validGraphTypes.push('lineChart')
+						validGraphTypes.push('barChart')
 					return validGraphTypes
-						.push('lineChart')
-						.push('barChart')
 				} else if (xtype === 'number') {
 			
 				// X IS NUMBER - SCATTER CHART OR LINE OR BAR
 			
+						validGraphTypes.push('scatterChart')
+						validGraphTypes.push('lineChart')
+						validGraphTypes.push('barChart')
 					return validGraphTypes
-						.push('scatterChart')
-						.push('lineChart')
-						.push('barChart')
 				}
 			}
 	

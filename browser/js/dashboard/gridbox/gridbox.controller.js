@@ -1,5 +1,5 @@
 app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast',
-    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, '$mdToast') {
+    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast) {
       $scope.gridsterOptions = {
         margins: [25, 25],
         columns: 16,
@@ -54,14 +54,6 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
       // grid manipulation
       $scope.clear = function() {
         $scope.dashboard.charts = [];
-      };
-
-      $scope.addWidget = function() {
-        $scope.dashboard.charts.push({
-          name: "New Widget",
-          sizeX: 4,
-          sizeY: 4
-        });
       };
 
       $scope.addNewGraph = function () {
