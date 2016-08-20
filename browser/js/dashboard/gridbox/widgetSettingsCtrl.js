@@ -1,5 +1,6 @@
-app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', '$rootScope', '$modalInstance', 'widget', 'GeneratorFactory', '$interval', 'WidgetSettingsFactory', '$uibModalInstance',
-    function($scope, DashboardFactory, $timeout, $rootScope, $modalInstance, widget, GeneratorFactory, $interval,WidgetSettingsFactory, $uibModalInstance) {
+app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '$rootScope', '$uibModalInstance', 'widget', 'GeneratorFactory', '$interval', 'WidgetSettingsFactory',
+    function($scope, $timeout, DashboardFactory, $rootScope, $uibModalInstance, widget, GeneratorFactory, $interval, WidgetSettingsFactory) {
+
       $scope.widget = widget;
       if(widget.chart.data && widget.chart.data[0].values.length){
         $scope.dataKeys = Object.keys(widget.chart.data[0].values[0]);
@@ -22,7 +23,6 @@ app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', 
       //3000 is a placeholder default value for testing, should switch to higher value when deploying. Also we need to put refreshInterval in the form logic
 
 
-    let dataInNVD3Format;
      $scope.setKeys = function(){
         return WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
         .then(function(res){
@@ -51,10 +51,13 @@ app.controller('WidgetSettingsCtrl', ['$scope', 'DashboardFactory', '$timeout', 
 
         $timeout(function(){
           widget.chart.api.refresh();
+          
           $interval(function(){
             $scope.setKeys();
-          }, $scope.form.refreshInterval);
-        },400)
+            },
+            $scope.form.refreshInterval);
+          },400)
 
         };
     }])
+

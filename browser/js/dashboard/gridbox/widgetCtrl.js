@@ -1,6 +1,6 @@
 
-app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', 'WidgetSettingsFactory', 'DashboardFactory', '$interval', '$uibModal',
-	function($scope, $modal, $controller, $rootScope, WidgetSettingsFactory, DashboardFactory, $interval, $uibModal) {
+app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSettingsFactory', 'DashboardFactory', '$interval', '$uibModal',
+	function($scope, $controller, $rootScope, WidgetSettingsFactory, DashboardFactory, $interval, $uibModal) {
 
 
       $scope.remove = function(widget) {
@@ -20,16 +20,16 @@ app.controller('WidgetCtrl', ['$scope', '$modal', '$controller', '$rootScope', '
         })
       };
 
-  $scope.updateData = function(widget){
-    if (widget.refreshInterval > 0) {
-        $interval(function(){
-          WidgetSettingsFactory.newSetKeys(widget.dataSource)
-          .then(function(res){
-            widget.chart.data = res[0]
-          })
-        }, widget.refreshInterval + 4000);
-        // 4000 is currently there for testing
-      }
-  };
-}
-  ])
+      $scope.updateData = function(widget){
+        if (widget.refreshInterval > 0) {
+            $interval(function(){
+              WidgetSettingsFactory.newSetKeys(widget.dataSource)
+              .then(function(res){
+                widget.chart.data = res[0]
+              })
+            }, widget.refreshInterval + 4000);
+            // 4000 is currently there for testing
+          }
+      };
+  }
+]);
