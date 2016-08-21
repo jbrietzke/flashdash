@@ -41,24 +41,23 @@ app.factory('validGraphFactory', function () {
 			
 				// X IS STRING - BAR CHART OR PIE
 			
-						validGraphTypes.push('scatterChart')
-						validGraphTypes.push('discreetBarChart')
-						validGraphTypes.push('pieChart')
+					validGraphTypes.push('discreetBarChart')
+					validGraphTypes.push('pieChart')
 					return validGraphTypes
 				} else if (xtype === 'date') {
 			
 				// X IS DATE- LINE CHART OR BAR CHART
 			
-						validGraphTypes.push('lineChart')
-						validGraphTypes.push('discreetBarChart')
+					validGraphTypes.push('lineChart')
+					validGraphTypes.push('discreetBarChart')
 					return validGraphTypes
 				} else if (xtype === 'number') {
 			
 				// X IS NUMBER - SCATTER CHART OR LINE OR BAR
 			
-						validGraphTypes.push('scatterChart')
-						validGraphTypes.push('lineChart')
-						validGraphTypes.push('discreetBarChart')
+					validGraphTypes.push('scatterChart')
+					validGraphTypes.push('lineChart')
+					validGraphTypes.push('discreetBarChart')
 					return validGraphTypes
 				}
 			}

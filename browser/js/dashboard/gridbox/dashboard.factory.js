@@ -60,7 +60,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     		return {
                 name: e.name,
     			dataSource: e.dataSource || 'http://localhost:1337/api/dummyData/gitMosane', //this needs to change at some point
-    			refreshInterval: e.refreshInterval || 1000,
+    			refreshInterval: e.refreshInterval || 1000000,
     			type: e.type,
     			sizeX: e.sizeX,
     			sizeY: e.sizeY,
