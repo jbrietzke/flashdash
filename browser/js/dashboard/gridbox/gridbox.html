@@ -11,15 +11,13 @@
   </md-autocomplete>
 
      </div>
-    <div class="col-md-8">
-        <h3>{{dashboard.name}}</h3>
-        <h4>{{ dashDesc }}</h4>
+    <div class="col-md-4 text-center">
+        <h3 class='user-header'>{{dashboard.name}}</h3>
+        <h4 class='account-text'>{{ dashDesc }}</h4>
     </div>
   </div>
 
   <section id="gridbox">
-    <div>
-
       <label>
           <h3>Layout Controls: </h3>
       </label>
@@ -29,10 +27,14 @@
           ng-disabled='dashboardList.length < 1'
           ng-click='toggleEditable()'>
           Editing {{editable ? "enabled" : "disabled"}}</md-button>
-      <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised md-primary md-hue-3" ng-click='saveLayout(); showToast1()'> Save! </md-button>
-      <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised
-      md-primary md-hue-3" ng-click=addNewGraph()>Add View</md-button>
-      <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised md-warn md-hue-2" ng-click=clear()>Clear All Widgets</md-button>
+
+      <div class='text-left'>
+        <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised md-primary md-hue-3" ng-click='saveLayout(); showToast1()'> Save! </md-button>
+        <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised
+        md-primary md-hue-3" ng-click=addNewGraph()>Add View</md-button>
+        <md-button ng-disabled="!editable" ng-class='{ editlocked: !editable}'class="md-raised md-warn md-hue-2" ng-click=clear()>Clear All Widgets</md-button>
+      </div>
+
       <div gridster="gridsterOptions" class='ng-scope gridster-desktop gridster-loaded dark-bg'>
       <div class='hundred'>
       <ul class="with-3d-shadow with-transitions">

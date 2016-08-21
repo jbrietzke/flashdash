@@ -2,9 +2,51 @@
 .nav-size{
   font-size: 20px;
 }
-
+a:link {
+    color: #0267a4;
+}
+a:visited {
+color: #0267a4;
+}
 md-toast.md-success-toast-theme .md-toast-content {
   background-color: green;
+}
+.user-header{
+  font-size: 32px;
+}
+.about-info{
+  margin-top:50px;
+  margin-bottom: 50px;
+}
+.b{
+  width:80%;
+}
+.glyphicon.glyphicon-flash {
+    font-size: 100px;
+}
+.glyphicon.glyphicon-user{
+  font-size:100px;
+}
+.glyphicon.glyphicon-cog{
+  font-size: 100px;
+}
+.user-title{
+  font-size:46px;
+  margin-bottom: 25px;
+}
+.account-text{
+  font-size: 20px;
+}
+.about-text{
+  font-size:24px;
+  color: black;
+}
+.db-name{
+  font-size: 24px;
+  color: #01283f;
+}
+.blk{
+  color: black;
 }
 md-toast {
   left: calc(50vw - 150px);
@@ -37,6 +79,15 @@ md-toast {
    left: 0; 
    width: 100%; 
    padding:0 5px;
+   color:  white;
+}
+.personal-text{
+    position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%; 
+   padding:0 5px;
+   color: white;
 }
 
 .filler{
