@@ -41,7 +41,7 @@ app.factory('validGraphFactory', function () {
 			
 				// X IS STRING - BAR CHART OR PIE
 			
-					validGraphTypes.push('discreetBarChart')
+					validGraphTypes.push('discreteBarChart')
 					validGraphTypes.push('pieChart')
 					return validGraphTypes
 				} else if (xtype === 'date') {
@@ -49,7 +49,7 @@ app.factory('validGraphFactory', function () {
 				// X IS DATE- LINE CHART OR BAR CHART
 			
 					validGraphTypes.push('lineChart')
-					validGraphTypes.push('discreetBarChart')
+					validGraphTypes.push('discreteBarChart')
 					return validGraphTypes
 				} else if (xtype === 'number') {
 			
@@ -57,7 +57,7 @@ app.factory('validGraphFactory', function () {
 			
 					validGraphTypes.push('scatterChart')
 					validGraphTypes.push('lineChart')
-					validGraphTypes.push('discreetBarChart')
+					validGraphTypes.push('discreteBarChart')
 					return validGraphTypes
 				}
 			}
