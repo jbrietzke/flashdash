@@ -46,7 +46,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
 
     function setDataInCorrectFormat (dataToGraph, widget) {
         let dataObj;
-        if (widget.type === 'scatterChart' || widget.type === 'barChart' || widget.type === 'lineChart') {
+        if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
             dataObj = GeneratorFactory.getDataInKVFormat(dataToGraph)
             dataObj.color = widget.color
             dataObj.key = widget.yparam
