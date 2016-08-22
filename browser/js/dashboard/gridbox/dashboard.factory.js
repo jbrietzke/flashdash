@@ -69,13 +69,13 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     obj.setDataInCorrectFormat = function (dataToGraph, widget) {
         let dataObj;
         if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
-            dataObj = GeneratorFactory.getDataInKVFormat(dataToGraph)
+            dataObj = getDataInKVFormat(dataToGraph)
             dataObj.color = widget.color
             dataObj.key = widget.yparam
             return [dataObj]
         }
         if (widget.type === 'pieChart') {
-            dataObj = GeneratorFactory.getDataInPieFormat(dataToGraph)
+            dataObj = getDataInPieFormat(dataToGraph)
             // dataObj.color = widget.color
             // dataObj.key = widget.yparam
             // return [dataObj]
