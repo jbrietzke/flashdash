@@ -68,6 +68,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     }
     obj.setDataInCorrectFormat = function (dataToGraph, widget) {
         let dataObj;
+        console.log(widget)
         if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
             dataObj = getDataInKVFormat(dataToGraph)
             dataObj.color = widget.color
