@@ -1,7 +1,5 @@
-
-app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast',
-    function($scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast) {
-
+app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeout', 'WidgetSettingsFactory', '$rootScope', '$mdToast',
+    function($uibModal, $scope, DashboardFactory, $timeout, WidgetSettingsFactory, $rootScope, $mdToast) {
       $scope.gridsterOptions = {
         margins: [25, 25],
         columns: 16,
@@ -58,13 +56,13 @@ app.controller('gridboxCtrl', ['$scope', 'DashboardFactory','$timeout', 'WidgetS
         $scope.dashboard.charts = [];
       };
 
-      $scope.addWidget = function() {
-        $scope.dashboard.charts.push({
-          name: "New Widget",
-          sizeX: 4,
-          sizeY: 4
-        });
-      };
+      $scope.addNewGraph = function () {
+        $uibModal.open({
+          scope: $scope,
+          templateUrl: '/js/dashboard/newGraph/newGraph.html',
+          controller: 'newGraphCtrl'
+        })
+      }
 
       $scope.saveLayout = function () {
         DashboardFactory.saveLayout($scope.dashboard.id, $scope.dashboard.charts)
