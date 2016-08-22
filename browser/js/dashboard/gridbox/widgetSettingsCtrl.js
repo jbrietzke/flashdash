@@ -24,7 +24,7 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
 
 
      $scope.setKeys = function(){
-        return WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
+        return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, $scope.widget)
         .then(function(res){
           widget.chart.data = res[0];
           $scope.dataKeys = res[1];
