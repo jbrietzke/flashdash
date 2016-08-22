@@ -6,37 +6,11 @@
        </div>
 
        <div class="modal-body">
-           <div class="row">
-                <div class="col-lg-6 col-md-6">
+           <div class="row">          
                    <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
-                       <label class="control-label col-lg-4 col-md-4">Data Source</label>
-                       <div class="col-lg-8 col-md-8">
-                           <input name="dataSource" ng-blur='setKeys()' type="text" ng-model="form.dataSource" class="form-control" />
-                       </div>
+                     
                    </div>
-               </div>
-
-                <div class="col-lg-6 col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">X Parameter</label>
-                       <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.xparam" ng-options='value for value in dataKeys'>
-
-                           </select>
-                       </div>
-                   </div>
-               </div>
-                <div class="col-lg-6 col-md-6">
-                   <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Y Parameter</label>
-                       <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.yparam" ng-options='value as value for value in dataKeys'>
-
-                           </select>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-6 col-md-6">
+               <div class=" col-md-6">
                    <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
                        <label class="control-label col-lg-4 col-md-4">Name</label>
                        <div class="col-lg-8 col-md-8">
@@ -44,19 +18,13 @@
                        </div>
                    </div>
                </div>
-               <div class="col-lg-6 col-md-6">
+               <div class="col-md-6">
                    <div class="form-group">
-                       <label class="control-label col-lg-4 col-md-4">Type</label>
-                       <div class="col-lg-8 col-md-8">
-                           <select name="type" class="form-control" ng-model="form.type" ng-options='value for value in widgetTypes'
-                                   >
-                           </select>
-                       </div>
                    </div>
                </div>
            </div>
            <div class="row">
-               <div class="col-lg-6 col-md-6">
+               <div class=" col-md-6">
                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
                        <label class="control-label col-lg-4 col-md-4">Width</label>
                        <div class="col-lg-8 col-md-8">
@@ -64,7 +32,7 @@
                        </div>
                    </div>
                </div>
-               <div class="col-lg-6 col-md-6">
+               <div class=" col-md-6">
                    <div class="form-group">
                        <label class="control-label col-lg-4 col-md-4">Height</label>
                        <div class="col-lg-8 col-md-8">
@@ -74,7 +42,7 @@
                </div>
            </div>
            <div class="row">
-               <div class="col-lg-6 col-md-6">
+               <div class=" col-md-6">
                    <div class="form-group" ng-class="{error: _form.sizeX.$error && _form.submitted}">
                        <label class="control-label col-lg-4 col-md-4">Column</label>
                        <div class="col-lg-8 col-md-8">
@@ -82,7 +50,7 @@
                        </div>
                    </div>
                </div>
-               <div class="col-lg-6 col-md-6">
+               <div class="col-md-6">
                    <div class="form-group">
                        <label class="control-label col-lg-4 col-md-4">Row</label>
                        <div class="col-lg-8 col-md-8">
