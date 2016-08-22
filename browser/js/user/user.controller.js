@@ -1,4 +1,4 @@
-app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, AuthService) {
+app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, AuthService, $mdDialog, growl) {
 
   AuthService.getLoggedInUser()
   .then(function(res){
@@ -30,25 +30,33 @@ app.controller('userCtrl', function ($uibModal, $scope, userFactory, $state, Aut
     })
   }
 
-	$scope.deleteDashboard = function(id, dashId){
-    	return userFactory.deleteDashboard(id, dashId)
-    	.then(function(){
-    		$state.reload()
-    	})
-  	}
-
   $scope.userEditingMode = false;
   $scope.dashboardEditingMode = false;
 
   $scope.toggleDashboardEditingMode = function(){
   	$scope.dashboardEditingMode = !$scope.dashboardEditingMode;
-    console.log("Toggling db to ", $scope.dashboardEditingMode)
   }
 
   $scope.toggleUserEditingMode = function(){
     $scope.userEditingMode = !$scope.userEditingMode;
-     console.log("Toggling us to ", $scope.userEditingMode)
  }
 
-
-});
+ $scope.showConfirm = function(id, dashboardId, dashboardName) {
+  var confirm = $mdDialog.confirm()
+    .title('Are you sure to delete the dashboard?')
+    .textContent('Dashboard ' + dashboardName + ' and all its charts will be permanently deleted.')
+    .ariaLabel('Dashboard deletion')
+    .targetEvent(event)
+    .ok('Yes')
+    .cancel('No');
+  $mdDialog.show(confirm).then(function() {
+    growl.success('Dashboard being deleted', {title: 'Deleted', ttl: 6000, disableCountDown: true}); 
+    return userFactory.deleteDashboard(id, dashboardId)
+    .then(function(){
+      $state.reload()
+    })
+  }, function() {
+    growl.success('You decided to keep your dashboard', {title: 'Not deleted', ttl: 4000, disableCountDown: true}); 
+  });
+};
+  });

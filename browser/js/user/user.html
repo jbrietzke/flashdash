@@ -16,7 +16,10 @@
         <td>
         <div class='row'>
         <md-button class="md-primary md-hue-1" ng-click='modDashboard(id, dashboard)'>Edit</md-button>
-        <md-button class="md-warn md-hue-3" ng-click='deleteDashboard(id, dashboard.id)'><span class="glyphicon glyphicon-remove"></span></button></td>
+        <md-button class="md-warn md-hue-3" ng-click='showConfirm(id, dashboard.id, dashboard.name)'><span class="glyphicon glyphicon-remove"></span></button></td>
+<!--         <md-button class="md-warn md-hue-3" ng-click='deleteDashboard(id, dashboard.id)'><span class="glyphicon glyphicon-remove"></span></button></td>
+ -->
+
         </div>
       </tr>
       <tr class="blank_row"></tr>
