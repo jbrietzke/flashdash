@@ -30,7 +30,6 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
                 promises.push(prom);
                 prom
                 .then(function (sourceData) {
-                    debugger;
                     e.chart = {
                         options: GeneratorFactory[e.type].options(e.xparam, e.yparam),
                         data: obj.setDataInCorrectFormat(sourceData, e),
@@ -61,14 +60,16 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
 
     function getDataInPieFormat(realData) {
       console.log("++++++ Hitting getDataInPieFormat")
-      return {
-        values: [{key: "one", y: 1}, {key:"two", y: 2}, {key:"three", y:3}],
-        key: null
-      }
+      return [{key: "one", y: 1}, {key:"two", y: 2}, {key:"three", y:3}]
     }
+
     obj.setDataInCorrectFormat = function (dataToGraph, widget) {
         let dataObj;
+        console.log("===================")
         console.log(widget)
+        console.log("===============================")
+        console.log(dataToGraph)
+        console.log("===============================")
         if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
             dataObj = getDataInKVFormat(dataToGraph)
             dataObj.color = widget.color
