@@ -8,7 +8,7 @@ app.factory('GeneratorFactory', function() {
 
 function getDataInKVFormat (realData) {
       return {
-      values: realData,
+      values: realData || [],
       key: null
       // this breaks previously hardcoded 'this works' string in the tooltip
       // for key - the key should be the yparameter as 
@@ -36,10 +36,10 @@ function scatterChartOptions(xparam, yparam){
       x: function(d,i){ return i[xparam]; },   // HACK to remove!
       y: function(d){ return d[yparam]; },
       xAxis: {
-        axisLabel: xparam,
-        tickFormat: function (d) {
-          return console.log(d);
-        }
+        axisLabel: xparam
+        // tickFormat: function (d) { // to change later
+        //   return console.log(d);
+        // }
       },
       yAxis: {
               axisLabel: yparam,
