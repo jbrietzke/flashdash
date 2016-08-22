@@ -21,15 +21,12 @@ app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSett
       };
 
       $scope.updateData = function(widget){
-        if (widget.refreshInterval > 0) {
             $interval(function(){
               WidgetSettingsFactory.newSetKeys(widget.dataSource)
               .then(function(res){
-                widget.chart.data = res[0]
+                widget.chart.data = res[0];
               })
-            }, widget.refreshInterval + 4000);
-            // 4000 is currently there for testing
-          }
+            }, widget.refreshInterval);
       };
   }
 ]);

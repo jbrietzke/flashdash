@@ -1,4 +1,4 @@
-app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, GeneratorFactory, validGraphFactory, DashboardFactory, $uibModalInstance) {
+app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, GeneratorFactory, validGraphFactory, DashboardFactory, $uibModalInstance, $interval, $timeout) {
 	$scope.getKeysAndTypes = function () {
 		DashboardFactory.getDataSource($scope.form.dataSource)
 		.then(DashboardFactory.findDataToGraph)
@@ -28,9 +28,28 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
         
         WidgetSettingsFactory.newSetKeys($scope.form.dataSource, widget)
         .then(function (dataArr) {
+
         	widget.chart.api.updateWithData(dataArr[0])
-        	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name))
+        	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name));
+            let time = Number($scope.form.refreshInterval) * 1000
+            if(!time){
+                time = 10000000;
+            }else if( time< 3000){
+                time = 3000
+            }
+            widget.refreshInterval = time;
+            return widget;
 		})
+        .then(function(widget){
+            $interval(function(){
+                return WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
+                .then(function(res){
+                    widget.chart.data = res[0];
+                    $scope.dataKeys = res[1];
+                })
+
+            }, widget.refreshInterval);
+        });
 
 		$uibModalInstance.dismiss();
 
@@ -52,6 +71,6 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     	angular.extend(widget, form);
     	if(widget.xparam) widget.xparam = widget.xparam.name;
     	if(widget.yparam) widget.yparam = widget.yparam.name;
-    	return widget; 
+    	return widget;
     }
 })

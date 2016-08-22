@@ -18,11 +18,8 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
         dataSource: widget.dataSource,
         yparam: widget.yparam,
         xparam: widget.xparam,
-        refreshInterval : widget.refreshInterval || 3000,
+        refreshInterval : widget.refreshInterval || 10000000,
       };
-      //3000 is a placeholder default value for testing, should switch to higher value when deploying. Also we need to put refreshInterval in the form logic
-
-
      $scope.setKeys = function(){
         return WidgetSettingsFactory.newSetKeys($scope.form.dataSource, $scope.widget)
         .then(function(res){
@@ -50,13 +47,13 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
 
 
         $timeout(function(){
+
           widget.chart.api.refresh();
-          
+
           $interval(function(){
             $scope.setKeys();
-            },
-            $scope.form.refreshInterval);
-          },400)
+          }, widget.refreshInterval);
+        },400)
 
         };
     }])
