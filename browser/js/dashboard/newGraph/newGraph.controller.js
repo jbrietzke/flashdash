@@ -28,8 +28,13 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
   			widget = customExtend(widget, $scope.form);
         	widget.chart.api.updateWithData(dataArr[0])
         	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name));
-            widget.refreshInterval = $scope.form.refreshInterval;
-            // This is hardcoded for testing
+            let time = Number($scope.form.refreshInterval) * 1000
+            if(!time){
+                time = 10000000;
+            }else if( time< 15000){
+                time = 15000
+            }
+            widget.refreshInterval = time;
 		})
 
 		$uibModalInstance.dismiss();

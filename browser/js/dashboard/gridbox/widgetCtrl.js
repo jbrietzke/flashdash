@@ -25,10 +25,8 @@ app.controller('WidgetCtrl', ['$scope', '$controller', '$rootScope', 'WidgetSett
               WidgetSettingsFactory.newSetKeys(widget.dataSource)
               .then(function(res){
                 widget.chart.data = res[0];
-                console.log(widget.refreshInterval);
               })
-            }, widget.refreshInterval || 4000);
-            // 4000 is currently there for testing
+            }, widget.refreshInterval);
       };
   }
 ]);
