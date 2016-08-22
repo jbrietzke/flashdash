@@ -50,7 +50,13 @@ router.post('/:userId/dashboard', ensureAuthenticated, ensureRightUser, function
       description: req.body.description
   })
   .then(()=> res.send(200))
-  .catch(next)
+      .catch(function(err) {
+        if (err.name && err.name.match("[uU]nique")) {
+          res.status(409).send("Duplicate dashbard name: " + req.body.name || "unknown");
+        } else {
+          next();
+        }
+      })
 });
 
 router.put('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res, next){
@@ -61,6 +67,13 @@ router.put('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res
     } else {
       return dashboard.update(req.body)
       .then(()=> res.send(200))
+      .catch(function(err) {
+        if (err.name && err.name.match("[uU]nique")) {
+          res.status(409).send("Duplicate dashbard name: " + req.body.name || "unknown");
+        } else {
+          next();
+        }
+      })
     }
   })
   .catch(next)

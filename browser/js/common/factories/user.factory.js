@@ -30,6 +30,12 @@ app.factory('userFactory', function($http, AuthService, growl){
 	obj.updateDashboard = function(id, dashId, content){
   		return $http.put('api/users/' + id + '/dashboard/' + dashId, content)
   		.then(res =>res.data)
+      .catch(function(err) {
+        if (err.status) {
+          growl.error(err.data, {title: err.statusText || '', ttl: 4000, disableCountDown: true});
+        }
+        throw (err);
+      })
   	}
 
 	obj.deleteDashboard = function(id, dashId){
