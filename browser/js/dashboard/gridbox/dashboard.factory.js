@@ -46,7 +46,6 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
     }
 
     function getDataInKVFormat (realData) {
-        console.log("----- Hitting getDataInKVFormat")
           return {
           values: realData || [],
           key: null
@@ -58,18 +57,13 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         }
       }
 
-    function getDataInPieFormat(realData) {
-      console.log("++++++ Hitting getDataInPieFormat")
-      return [{key: "one", y: 1}, {key:"two", y: 2}, {key:"three", y:3}]
+    function getDataInPieFormat(realData, widget) {
+      let data = realData.map((thing) => ({key: thing[widget.xparam], y: thing[widget.yparam]}))
+      return data;
     }
 
     obj.setDataInCorrectFormat = function (dataToGraph, widget) {
         let dataObj;
-        console.log("===================")
-        console.log(widget)
-        console.log("===============================")
-        console.log(dataToGraph)
-        console.log("===============================")
         if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
             dataObj = getDataInKVFormat(dataToGraph)
             dataObj.color = widget.color
@@ -77,7 +71,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
             return [dataObj]
         }
         if (widget.type === 'pieChart') {
-            dataObj = getDataInPieFormat(dataToGraph)
+            dataObj = getDataInPieFormat(dataToGraph, widget)
             // dataObj.color = widget.color
             // dataObj.key = widget.yparam
             // return [dataObj]
