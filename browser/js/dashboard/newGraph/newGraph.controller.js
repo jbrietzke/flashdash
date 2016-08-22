@@ -27,7 +27,9 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
         	let widget = $scope.dashboard.charts[numberOfCharts -1]
   			widget = customExtend(widget, $scope.form);
         	widget.chart.api.updateWithData(dataArr[0])
-        	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name))
+        	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name));
+            widget.refreshInterval = $scope.form.refreshInterval;
+            // This is hardcoded for testing
 		})
 
 		$uibModalInstance.dismiss();
