@@ -83,6 +83,10 @@ app.controller('gridboxCtrl', ['$uibModal', '$scope', 'DashboardFactory','$timeo
             .position('bottom')
         );
       };
+
+      $scope.updateData = function(){
+        console.log('Hello, im back');
+      }
     },
 
   ]);

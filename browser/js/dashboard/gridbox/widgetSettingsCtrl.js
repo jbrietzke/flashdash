@@ -41,6 +41,7 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
       };
 
       $scope.submit = function() {
+        console.log('In the submit function');
         angular.extend(widget, $scope.form);
         //update with new options
         if (widget.type) {
@@ -50,13 +51,14 @@ app.controller('WidgetSettingsCtrl', ['$scope', '$timeout','DashboardFactory', '
 
 
         $timeout(function(){
+
           widget.chart.api.refresh();
-          
+
           $interval(function(){
+            console.log('The interval is working');
             $scope.setKeys();
-            },
-            $scope.form.refreshInterval);
-          },400)
+          }, 1000);
+        },400)
 
         };
     }])

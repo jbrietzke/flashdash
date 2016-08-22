@@ -50,6 +50,6 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
     	angular.extend(widget, form);
     	if(widget.xparam) widget.xparam = widget.xparam.name;
     	if(widget.yparam) widget.yparam = widget.yparam.name;
-    	return widget; 
+    	return widget;
     }
 })
