@@ -32,8 +32,9 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
                 .then(function (sourceData) {
                     e.chart = {
                         options: GeneratorFactory[e.type].options(e.xparam, e.yparam),
-                        data: setDataInCorrectFormat(sourceData, e),
+                        data: obj.setDataInCorrectFormat(sourceData, e),
                         api: {}
+
                     }
                 })
             })
@@ -44,13 +45,38 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         })
     }
 
-    function setDataInCorrectFormat (dataToGraph, widget) {
+    function getDataInKVFormat (realData) {
+        console.log("----- Hitting getDataInKVFormat")
+          return {
+          values: realData || [],
+          key: null
+          // this breaks previously hardcoded 'this works' string in the tooltip
+          // for key - the key should be the yparameter as 
+          // sepecified by the user - the new graph form or widget settings form 
+          // need to be modified to accomodate this
+          // also breaks color which was hardcoded - should also be user input
+        }
+      }
+
+    function getDataInPieFormat(realData) {
+      console.log("++++++ Hitting getDataInPieFormat")
+      return [{key: "one", y: 1}, {key:"two", y: 2}, {key:"three", y:3}]
+    }
+
+    obj.setDataInCorrectFormat = function (dataToGraph, widget) {
         let dataObj;
         if (widget.type === 'scatterChart' || widget.type === 'discreteBarChart' || widget.type === 'lineChart') {
-            dataObj = GeneratorFactory.getDataInKVFormat(dataToGraph)
+            dataObj = getDataInKVFormat(dataToGraph)
             dataObj.color = widget.color
             dataObj.key = widget.yparam
             return [dataObj]
+        }
+        if (widget.type === 'pieChart') {
+            dataObj = getDataInPieFormat(dataToGraph)
+            // dataObj.color = widget.color
+            // dataObj.key = widget.yparam
+            // return [dataObj]
+            return dataObj;
         }
     }
 

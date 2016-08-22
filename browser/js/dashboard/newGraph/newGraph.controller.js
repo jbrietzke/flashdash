@@ -22,10 +22,13 @@ app.controller('newGraphCtrl', function ($scope, $q, WidgetSettingsFactory, Gene
 
     $scope.build = function () {
     	let numberOfCharts = addWidgetToDashboard()
-    	WidgetSettingsFactory.newSetKeys($scope.form.dataSource)
-    	.then(function (dataArr) {
-        	var widget = $scope.dashboard.charts[numberOfCharts -1]
-  			widget = customExtend(widget, $scope.form);
+        
+        let widget = $scope.dashboard.charts[numberOfCharts -1]
+  		widget = customExtend(widget, $scope.form);
+        
+        WidgetSettingsFactory.newSetKeys($scope.form.dataSource, widget)
+        .then(function (dataArr) {
+
         	widget.chart.api.updateWithData(dataArr[0])
         	widget.chart.api.updateWithOptions(returnGraphOptions($scope.form.type, $scope.form.xparam.name, $scope.form.yparam.name));
             let time = Number($scope.form.refreshInterval) * 1000
