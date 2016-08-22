@@ -1,0 +1,162 @@
+
+.nav-size{
+  font-size: 20px;
+}
+a:link {
+    color: #0267a4;
+}
+a:visited {
+color: #0267a4;
+}
+md-toast.md-success-toast-theme .md-toast-content {
+  background-color: green;
+}
+.user-header{
+  font-size: 32px;
+}
+.about-info{
+  margin-top:50px;
+  margin-bottom: 50px;
+}
+.b{
+  width:80%;
+}
+.glyphicon.glyphicon-flash {
+    font-size: 100px;
+}
+.glyphicon.glyphicon-user{
+  font-size:100px;
+}
+.glyphicon.glyphicon-wrench{
+  font-size: 100px;
+}
+.user-title{
+  font-size:46px;
+  margin-bottom: 25px;
+}
+.account-text{
+  font-size: 20px;
+}
+.about-text{
+  font-size:24px;
+  color: black;
+}
+.db-name{
+  font-size: 24px;
+  color: #01283f;
+}
+.blk{
+  color: black;
+}
+md-toast {
+  left: calc(50vw - 150px);
+}
+.dark-bg{
+  background-color: #01283f;
+}
+.borders{
+  border: 5px solid red;
+  padding:0;
+}
+.searchDash{
+  padding-top:20px;
+}
+.hundred{
+  height:416px;
+}
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+   height:70%;
+}
+.image img {
+    width: 100%;
+    height: 750px;
+}
+.about-text { 
+   position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%; 
+   padding:0 5px;
+   color:  white;
+}
+.personal-text{
+    position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%; 
+   padding:0 5px;
+   color: white;
+}
+
+.filler{
+  background-color:white;
+  height:200px;
+}
+.darkerfiller{
+  background-color: #01283f ;
+  height:100%;
+}
+navbar {
+
+  display: block;
+  height: 55px;
+  border-bottom: 5px solid #01283f;
+  box-shadow: 1px 1px 14px -5px black;
+  flex-shrink: 10px;
+
+  .container {
+    width: 91%;
+  }
+
+  fullstack-logo {
+    margin-top: 5px;
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  a {
+    color: black;
+    font-size: 16px;
+  }
+
+  .nav > li > a {
+    cursor: pointer;
+    transition: color 0.2s;
+    &.active {
+      color: darken(#0fa4fc, 10%);
+    }
+    &:hover {
+      background: none;
+      color: #0fa4fc,;
+    }
+    &:focus {
+      background: none;
+    }
+  }
+
+  .login-button {
+    float: right;
+    border: 1px solid black;
+    margin-top: 10px;
+    background: none;
+    outline: none !important;
+  }
+
+  .welcome {
+    float: right;
+    margin-top: 12px;
+    span {
+      color: black;
+      font-size: 16px;
+      margin-right: 5px;
+    }
+    a {
+      color: #0fa4fc;
+      cursor: pointer;
+    }
+  }
+
+}

@@ -1,0 +1,77 @@
+<div>
+  <div class="text-center">
+    <h1 class="user-title" ><strong> Welcome, {{user.firstName}}, to your account page!</strong></h1>
+  </div>
+  <div class="container">
+  <div class='row'>
+    <table class='col-lg-8 user-page-table'>
+      <th class='user-header'>Here are your current dashboards</th>
+      <tr class="blank_row"></tr>
+       <tr ng-repeat='dashboard in allDashBoards'>
+        <td>
+
+          <a  class="db-name" ui-sref="dashboard({dashToLoad: {name: dashboard.name}})" >{{dashboard.name}}</a>
+         
+        </td>
+        <td>
+        <div class='row'>
+        <md-button class="md-primary md-hue-1" ng-click='modDashboard(id, dashboard)'>Edit</md-button>
+        <md-button class="md-warn md-hue-3" ng-click='showConfirm(id, dashboard.id, dashboard.name)'><span class="glyphicon glyphicon-remove"></span></button></td>
+<!--         <md-button class="md-warn md-hue-3" ng-click='deleteDashboard(id, dashboard.id)'><span class="glyphicon glyphicon-remove"></span></button></td>
+ -->
+
+        </div>
+      </tr>
+      <tr class="blank_row"></tr>
+      <tr>
+        <td>
+            <md-button class="btn md-raised md-primary" ng-click='modDashboard(id)'>Create New Dashboard</md-button>
+          </td>
+        </tr>
+      </tr>
+
+    </table>
+
+    <div class="col-md-1" />
+
+    <table class="col-md-4 user-page-table">
+      <th class='user-header'>Your Account Info</th>
+      <tr class="blank_row"></tr>
+
+      <tr>
+          <td class='account-text'>First name: <input ng-hide='!userEditingMode' ng-model='user.firstName' type="text" placeholder="{{user.firstName}}"><span ng-hide='userEditingMode'>{{user.firstName}}</span></td>
+      </tr>
+      <tr>
+        <td class='account-text'>Last name: <input ng-hide='!userEditingMode' ng-model='user.lastName' type="text" placeholder="{{user.lastName}}"><span ng-hide='userEditingMode'>{{user.lastName}}</span></td>
+      </tr>
+      <tr>
+        <td class='account-text'>Email address: <input ng-hide='!userEditingMode' ng-model='user.email' type="text" placeholder="{{user.email}}"><span ng-hide='userEditingMode'>{{user.email}}</span></td>
+      </tr>
+      <tr class="blank_row"></tr>
+      <tr>
+      <td>      <md-button class="md-primary md-hue-1" ng-click='toggleUserEditingMode()'>{{ userEditingMode ? "Lock" : "Edit"}} user info</md-button>
+      <md-button class="md-primary md-hue-1" ng-hide='!userEditingMode' ng-click='update(id, user)'>Update Info</md-button></td>
+      </tr>
+
+    </table>
+
+
+   </div>
+ </div>
+
+
+   <div class='hundred'>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- <div>
+<p>We are here in the user page</p>
+<button ng-click='update(id, data)'>Update User Route</button>
+<button ng-click='delete(id)'>Delete User Route</button>
