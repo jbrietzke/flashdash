@@ -5,6 +5,18 @@ app.factory('GeneratorFactory', function() {
   /**
    *  Data & Options Generators
    */
+
+function getDataInKVFormat (realData) {
+      return {
+      values: realData,
+      key: null
+      // this breaks previously hardcoded 'this works' string in the tooltip
+      // for key - the key should be the yparameter as 
+      // sepecified by the user - the new graph form or widget settings form 
+      // need to be modified to accomodate this
+      // also breaks color which was hardcoded - should also be user input
+    }
+  }
 function scatterChartOptions(xparam, yparam){
   return {
     chart: {
@@ -21,13 +33,16 @@ function scatterChartOptions(xparam, yparam){
       showDistX: true,
       showDistY: true,
       duration: 100,
-      x: function(d,i){ return i; },   // HACK to remove!
+      x: function(d,i){ return i[xparam]; },   // HACK to remove!
       y: function(d){ return d[yparam]; },
       xAxis: {
-        axisLabel: 'X Axis',
-        },
+        axisLabel: xparam,
+        tickFormat: function (d) {
+          return console.log(d);
+        }
+      },
       yAxis: {
-              axisLabel: 'Y Axis',
+              axisLabel: yparam,
               axisLabelDistance: -5
                 }
       }
@@ -482,7 +497,8 @@ function scatterChartOptions(xparam, yparam){
     cumulativeLineChart: {
       options: cumulativeLineChartOptions,
       data: cumulativeChartData
-    }
+    }, 
+    getDataInKVFormat : getDataInKVFormat
   };
 });
 

@@ -8,8 +8,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         return $http.get(link)
         .then(getData)
         .then(function(data){
-            let x = obj.findDataToGraph(data);
-            return x;
+            return obj.findDataToGraph(data);
         })
         .catch(res => [])
     }
@@ -33,11 +32,7 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
                 .then(function (sourceData) {
                     e.chart = {
                         options: GeneratorFactory[e.type].options(e.xparam, e.yparam),
-                        data: [{
-                            values:sourceData || [],
-                            key: "this works",
-                            color: '#ff7f0e'
-                        }],
+                        data: setDataInCorrectFormat(sourceData, e),
                         api: {}
                     }
                 })
@@ -49,12 +44,23 @@ app.factory('DashboardFactory', function($http, $q, GeneratorFactory){
         })
     }
 
+    function setDataInCorrectFormat (dataToGraph, widget) {
+        let dataObj;
+        if (widget.type === 'scatterChart' || widget.type === 'barChart' || widget.type === 'lineChart') {
+            dataObj = GeneratorFactory.getDataInKVFormat(dataToGraph)
+            dataObj.color = widget.color
+            dataObj.key = widget.yparam
+            return [dataObj]
+        }
+    }
+
+
     obj.saveLayout = function (dashboardId, layout) {
     	let thing = layout.map(function (e) {
     		return {
                 name: e.name,
     			dataSource: e.dataSource || 'http://localhost:1337/api/dummyData/gitMosane', //this needs to change at some point
-    			refreshInterval: e.refreshInterval || 1000,
+    			refreshInterval: e.refreshInterval || 1000000,
     			type: e.type,
     			sizeX: e.sizeX,
     			sizeY: e.sizeY,

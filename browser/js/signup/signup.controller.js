@@ -9,8 +9,10 @@ app.controller('signupCtrl', function($scope, SignupFactory, AuthService, $state
 		 firstName: signup.firstName,
 		  lastName: signup.lastName
 		}
-    SignupFactory.signup($scope.personInfo);
-    AuthService.login({email : $scope.personInfo.email, password : $scope.personInfo.password})
+    SignupFactory.signup($scope.personInfo)
+    .then(function () {
+    return AuthService.login({email : $scope.personInfo.email, password : $scope.personInfo.password})
+   	})
     .then(function(){
       $state.go('dashboard');
     })

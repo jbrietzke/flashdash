@@ -36,7 +36,7 @@ app.factory('userFactory', function($http, AuthService, growl){
     	return $http.delete('api/users/' + id + '/dashboard/' + dashId)
   	}
 
-  	obj.getAllDashboards = function(){
+  obj.getAllDashboards = function(){
   		return AuthService.getLoggedInUser()
   		.then(function (user) {
   			return $http.get('api/users/' + user.id + '/dashboards')

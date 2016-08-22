@@ -30,8 +30,21 @@ router.put('/:userId', ensureAuthenticated, ensureRightUser, function(req, res, 
 })
 
 router.post('/signup', function(req, res, next){
-  User.create(req.body)
-  .then( () => res.send(200))
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+  .then(function (existingUser) {
+    if(existingUser) {
+      res.sendStatus(403);
+      throw new Error ('Email Id has already been registered')
+    }
+    else {
+      return User.create(req.body)
+    }
+  })
+  .then(() => res.send(200))
   .catch(next)
 })
 
