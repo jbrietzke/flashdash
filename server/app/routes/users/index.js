@@ -74,7 +74,7 @@ router.put('/:id/dashboard/:dashboardId', ensureAuthenticated, function(req, res
       .then(()=> res.send(200))
       .catch(function(err) {
         if (err.name && err.name.match("[uU]nique")) {
-          res.status(409).send("Duplicate dashbard name: " + req.body.name || "unknown");
+          res.status(409).send("Duplicate dashboard name: " + req.body.name || "unknown");
         } else {
           next();
         }
